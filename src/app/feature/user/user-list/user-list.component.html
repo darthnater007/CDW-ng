@@ -1,3 +1,34 @@
-<p>
-  user-list works!
-</p>
+<h1> {{ title }}</h1>
+
+<a routerLink="/create/writer" class="btn btn-primary">
+    <span>
+        Become a Member <i class="fas fa-user-plus"></i>
+    </span>
+</a>
+
+
+<h4 *ngIf="!users">Loading...</h4>
+
+
+<div class="container-flex" *ngIf="users">
+    <div *ngFor = 'let user of users' class="grid-container">
+       <div class= "user-card" style = "background: grey">
+           <div class="name" >
+               <h2> {{ user.FirstName }} {{ user.LastName }}</h2>
+           </div>
+           <div>
+               <p>Bio: {{user.Bio }}</p>
+           </div>
+           <div *ngIf='user.Website?.length > 0'>
+           <p>Website: 
+           <a href="{{ user. Website }}" target="_blank"> {{ user.FirstName }}'s Site </a>
+           </p>
+           </div>
+           <!--  I'm going to need to make it so only users that are logged in can see contact info of other users -->
+           <div>
+              <p> Email: {{ user.Eamil }}</p>
+               <p> Phone: {{ user.phone }}</p>
+           </div>
+       </div>  
+    </div>
+</div>

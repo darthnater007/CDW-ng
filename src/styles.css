@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.jumbotron { 
+    color: black;
+    background: radial-gradient(transparent, rgba( 0, 0, 0, 0.1), rgba( 0, 0, 0, 0.3)), url("assets/images/paperbg.jpg") no-repeat center; 
+    border-radius: 0px;
+}
+
+.jumbotron h1 {
+    padding-left: 15%;
+    text-shadow: 1px 1px 3px beige, -1px -1px  3px beige;
+}
+
+.jumbotron h4 {
+    padding-left: 10%;
+}
+
