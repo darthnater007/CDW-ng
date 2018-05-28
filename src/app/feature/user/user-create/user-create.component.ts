@@ -9,7 +9,9 @@ import { UserService } from '../../../service/user.service';
   styleUrls: ['./user-create.component.css']
 })
 export class UserCreateComponent implements OnInit {
-	title: string = "Create New User";
+	title: string = "Join Our Group";
+    confirmPassword: string = '';
+    confirmEmail: string = '';
 	resp: any;
 	user: User = new User(0, '', '', '', '', '', '', '', '', false);
 	
@@ -19,7 +21,7 @@ create() {
 	this.userSvc.create(this.user).subscribe(resp => {
 		this.resp = resp;
 		console.log("User-Create: ", this.resp);
-		this.router.navigate(['/user/list']);
+		this.router.navigate(['/ourwriters']);
 		});
 }
 

@@ -1,3 +1,104 @@
-<p>
-  user-create works!
-</p>
+<a routerLink='/ourwriters'><-Back</a>
+<h1> {{ title }}</h1>
+<h4>Thank you for your interest in Cincinnati DIY Writers!</h4>
+<h5>Please fill out and submit the form below to become a member.</h5>
+<h4 *ngIf='!user'><br><br>Loading...</h4>
+<form class="container">
+    <div class="form-group">
+            <label>
+                UserName:
+                <span *ngIf='user.UserName == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+            <input class="form-control" type="text" [(ngModel)]='user.UserName' name="UserName" placeholder="Choose a User Name" maxlength="50" autofocus required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ user.UserName.length }} / 50 </small></h6>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+           <label>
+                Password:
+                <span *ngIf='user.Password == "" ' class="text-danger text-align-right"><sup>*</sup>Required</span>
+            </label>
+            <input class="form-control" type="password" [(ngModel)]='user.Password' name="Password" placeholder="Choose a Password" maxlength="50" required>
+        <h6 class="character-count text-muted"><small>Characters Used: {{ user.Password.length }} / 50 </small></h6>
+        </div>
+        <div class="col">
+           <label>
+                Re-type Password:
+            </label>
+            <input class="form-control" type="password" [(ngModel)]=' confirmPassword' name="ConfirmPassword" placeholder="Confirm Password" maxlength="50" required>
+            <p *ngIf='confirmPassword != user.Password' class="character-count text-danger"><small>Your passwords must match.</small></p>
+            <p *ngIf='confirmPassword == user.Password  && confirmPassword != "" ' class="character-count text-success"><small>Your passwords match!</small></p>
+            <p *ngIf='confirmPassword == user.Password  && confirmPassword == "" ' class="character-count text-warning"><small>Password is blank.</small></p>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+           <label>
+                First Name:
+                <span *ngIf='user.FirstName == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+            <input class="form-control" type="text" [(ngModel)]='user.FirstName' name="FirstName" placeholder="Your First Name" maxlength="75" required>
+        <h6 class="character-count text-muted"><small>Characters Used: {{ user.FirstName.length }} / 75 </small></h6>
+        </div>
+        <div class="col">
+           <label>
+                Last Name:
+                <span *ngIf='user.LastName == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+            <input class="form-control" type="text" [(ngModel)]=' user.LastName' name="LastName" placeholder="Your Last Name" maxlength="75" required>
+            <h6 class="character-count text-muted"><small>Characters Used: {{ user.LastName.length }} / 75 </small></h6>
+        </div>
+    </div>
+    <div class="form-group">
+            <label>
+                Bio:
+                <span *ngIf='user.Bio == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+        <textarea style="height: 150px; overflow-y: auto;" class="form-control align-text-top" type="text" [(ngModel)]='user.Bio' name="Bio" placeholder="Tell Us About Who You Are And What You Like To Write." maxlength="500" required></textarea>
+        <h6 class=" character-count text-muted"><small>Character Used: {{ user.Bio.length }} / 500 </small></h6>
+    </div>
+    <div class="form-group">
+            <label>
+                Website:
+            </label>
+            <input class="form-control" type="text" [(ngModel)]='user.Website' name="Website" placeholder="Enter the full URL (ex. https://www.mysite.com) for a personal website, online store, or social media account." maxlength="100">
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ user.Website.length }} / 100 </small></h6>
+    </div>
+    <div class="form-group row">
+        <div class="col">
+           <label>
+                Email:
+            </label>
+            <input class="form-control" type="email" [(ngModel)]='user.Email' name="email" placeholder="Your Email Address" maxlength="75">
+        <h6 class="character-count text-muted"><small>Characters Used: {{ user.Password.length }} / 75 <br><sup>*</sup>Emails will only be shared with other members. </small></h6>
+        </div>
+        <div class="col">
+           <label>
+                Re-type Email:
+            </label>
+            <input class="form-control" type="email" [(ngModel)]=' confirmEmail' name="ConfirmEmail" placeholder="Confirm Email" maxlength="50">
+            <p *ngIf='confirmEmail != user.Email' class="character-count text-danger"><small>Your emails must match.</small></p>
+            <p *ngIf='confirmEmail == user.Email  && confirmEmail != "" ' class="character-count text-success"><small>Your emails match!</small></p>
+            <p *ngIf='confirmEmail == user.Email  && confirmEmail == "" ' class="character-count text-warning"><small>Email is blank.</small></p>
+        </div>
+    </div>
+    <div class="form-group">
+            <label>
+                Phone Number:
+            </label>
+            <input class="form-control" type="tel" [(ngModel)]='user.Phone' name="UserName" placeholder="Your Phone Number" minlength="12" maxlength="12" autofocus required>
+        <h6 *ngIf='user.Phone.length != 12' class=" character-count text-warning"><small>Format: xxx-xxx-xxxx</small></h6>    
+        <h6 *ngIf='user.Phone.length == 12' class=" character-count text-success"><small>Valid Format</small></h6>
+        <h6><small> <sup>*</sup> Phone nubers will only be shared with other members. </small></h6>
+    </div>
+    <div class="form-group row" *ngIf='user.Username != "" && user.Password != "" && user.Password == confirmPassword && user.FirstName != "" && user.LastName != "" && user.Bio != "" && user.Email == confirmEmail'>
+        <button 
+        
+        class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
+    </div>
+    <div class="form-group row" *ngIf='user.Username == "" || user.Password == "" || user.Password != confirmPassword || user.FirstName == "" || user.LastName == "" || user.Bio == "" || user.Email != confirmEmail'>
+        <button 
+        class="btn btn-lg btn-dark" >Create</button>
+        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
+    </div>
+</form>
