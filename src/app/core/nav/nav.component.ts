@@ -14,9 +14,9 @@ navItems: Nav[] = [
 	new Nav('About Us', '/about', 'Who are we?'),
     new Nav('Our Writers', '/ourwriters', 'Meet our writers'),
 	new Nav('Publications', '/publications', 'A list of our published works'),
-	new Nav('Workshop', '/vendor/list', 'A place for members to upload pieces for workshop'),
-	new Nav('Calendar', '/product/list', 'What we are up to'),
-	new Nav('Contact Us', '/about', 'Need to get a hold of our administrators directly?  Go here!')
+	new Nav('Workshop', '/workshop', 'A place for members to upload pieces for workshop'),
+	new Nav('Calendar', '/calendar', 'What we are up to'),
+	new Nav('Contact Us', '/contact', 'Need to get a hold of our administrators directly?  Go here!')
 ];
     
 constructor() { }

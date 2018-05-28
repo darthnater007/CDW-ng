@@ -16,6 +16,10 @@ import { UserCreateComponent } from './feature/user/user-create/user-create.comp
 
 // services
 import { UserService } from './service/user.service';
+import { HomeComponent } from './core/home/home.component';
+import { AboutComponent } from './core/about/about.component';
+import { ContactComponent } from './core/contact/contact.component';
+import { CalendarComponent } from './core/calendar/calendar.component';
 
 
 
@@ -26,7 +30,11 @@ import { UserService } from './service/user.service';
     NavComponent,
       
     UserListComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,

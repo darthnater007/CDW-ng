@@ -20,7 +20,6 @@ constructor(private userSvc: UserService) { }
 
   ngOnInit() {
 		this.userSvc.list().subscribe(users => {
-			console.log(users);
 			this.users = users;
 		});
 	  
