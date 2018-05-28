@@ -18,6 +18,7 @@ navItems: Nav[] = [
 	new Nav('Calendar', '/product/list', 'What we are up to'),
 	new Nav('Contact Us', '/about', 'Need to get a hold of our administrators directly?  Go here!')
 ];
+    
 constructor() { }
 
   ngOnInit() {
