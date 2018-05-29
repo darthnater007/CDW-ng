@@ -9,19 +9,18 @@ import { AppComponent } from './app.component';
 
 // core components
 import { NavComponent } from './core/nav/nav.component';
-
-// feature components
-import { UserListComponent } from './feature/user/user-list/user-list.component';
-import { UserCreateComponent } from './feature/user/user-create/user-create.component';
-
-// services
-import { UserService } from './service/user.service';
 import { HomeComponent } from './core/home/home.component';
 import { AboutComponent } from './core/about/about.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { CalendarComponent } from './core/calendar/calendar.component';
+
+// feature components
+import { UserListComponent } from './feature/user/user-list/user-list.component';
+import { UserCreateComponent } from './feature/user/user-create/user-create.component';
 import { UserEditComponent } from './feature/user/user-edit/user-edit.component';
-import { AdminUserEditComponent } from './feature/user/admin-user-edit/admin-user-edit.component';
+
+// services
+import { UserService } from './service/user.service';
 
 
 
@@ -31,14 +30,15 @@ import { AdminUserEditComponent } from './feature/user/admin-user-edit/admin-use
       
     NavComponent,
       
-    UserListComponent,
-    UserCreateComponent,
     HomeComponent,
     AboutComponent,
     ContactComponent,
     CalendarComponent,
-    UserEditComponent,
-    AdminUserEditComponent
+      
+    UserListComponent,
+    UserCreateComponent,
+    UserEditComponent
+      
   ],
   imports: [
     BrowserModule,
