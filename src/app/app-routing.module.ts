@@ -9,7 +9,8 @@ import { ContactComponent } from './core/contact/contact.component';
 
 //feature
 import { UserListComponent } from './feature/user/user-list/user-list.component';
-import {UserCreateComponent } from './feature/user/user-create/user-create.component';
+import { UserCreateComponent } from './feature/user/user-create/user-create.component';
+import { UserEditComponent } from './feature/user/user-edit/user-edit.component';
 
 const routes: Routes = [
     { path:'', redirectTo:'/', pathMatch: 'full' },
@@ -23,8 +24,9 @@ const routes: Routes = [
     //feature
     { path: 'ourwriters' , component: UserListComponent },
     { path: 'create/writer', component: UserCreateComponent },
+    { path: 'edit/writer/:id', component: UserEditComponent},
     
-    { path:'**', component: UserListComponent } //change to login later
+    { path:'**', component: HomeComponent }
 ];
 
 @NgModule({

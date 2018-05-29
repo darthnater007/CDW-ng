@@ -17,10 +17,8 @@ export class UserCreateComponent implements OnInit {
 	
 create() {
 	console.log('create a user...');
-	console.log (this.user);
 	this.userSvc.create(this.user).subscribe(resp => {
 		this.resp = resp;
-		console.log("User-Create: ", this.resp);
 		this.router.navigate(['/ourwriters']);
 		});
 }

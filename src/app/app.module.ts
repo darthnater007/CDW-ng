@@ -20,6 +20,8 @@ import { HomeComponent } from './core/home/home.component';
 import { AboutComponent } from './core/about/about.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { CalendarComponent } from './core/calendar/calendar.component';
+import { UserEditComponent } from './feature/user/user-edit/user-edit.component';
+import { AdminUserEditComponent } from './feature/user/admin-user-edit/admin-user-edit.component';
 
 
 
@@ -34,7 +36,9 @@ import { CalendarComponent } from './core/calendar/calendar.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    CalendarComponent
+    CalendarComponent,
+    UserEditComponent,
+    AdminUserEditComponent
   ],
   imports: [
     BrowserModule,

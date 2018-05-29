@@ -1,7 +1,7 @@
 <a routerLink='/ourwriters'><-Back</a>
 <h1> {{ title }}</h1>
-<h4>Thank you for your interest in Cincinnati DIY Writers!</h4>
-<h5>Please fill out and submit the form below to become a member.</h5>
+<h4 *ngIf='user'>This page will allow you to edit the details for {{ user.FirstName }} {{ user.LastName }}.  <br>If you are here by error, please go back to the list of our writers.</h4>
+<h5><br>Make changes to the form below</h5>
 <h4 *ngIf='!user'><br><br>Loading...</h4>
 <form class="container" *ngIf='user'>
     <div class="form-group">
@@ -88,17 +88,25 @@
             </label>
             <input class="form-control" type="tel" [(ngModel)]='user.Phone' name="Phone" placeholder="Your Phone Number" minlength="12" maxlength="12" autofocus required>
         <h6 *ngIf='user.Phone.length != 12' class=" character-count text-warning"><small>Format: xxx-xxx-xxxx</small></h6>    
-        <h6 *ngIf='user.Phone.length == 12' class=" character-count text-success"><small>Valid Format!</small></h6>
+        <h6 *ngIf='user.Phone.length == 12' class=" character-count text-success"><small>Valid Format</small></h6>
         <h6><small> <sup>*</sup> Phone numbers will only be shared with other members. </small></h6>
+    </div>
+    <!-- this should only be visible to site admins eventually -->
+    <div class="form-check" style="margin: 25px 0px;">
+        <label class="form-check-label">
+            Admin:
+        </label>
+        <input class="form-check-inputx" type="checkbox" [(ngModel)]='user.Admin' name="Admin">
+        <label class="form-check-label"><small class="text-danger"><sup>*</sup>If checked, this writer is a site administrator. </small></label>
     </div>
     <div class="form-group row" *ngIf='user.Username != "" && user.Password != "" && user.Password == confirmPassword && user.FirstName != "" && user.LastName != "" && user.Bio != "" && user.Email == confirmEmail'>
         <button 
         
-        class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
+        class="btn btn-lg btn-success align-center"  (click)='change()'>Update</button>
     </div>
     <div class="form-group row" *ngIf='user.Username == "" || user.Password == "" || user.Password != confirmPassword || user.FirstName == "" || user.LastName == "" || user.Bio == "" || user.Email != confirmEmail'>
         <button 
-        class="btn btn-lg btn-dark" >Create</button>
-        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
+        class="btn btn-lg btn-dark" >Update</button>
+        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Update</span>
     </div>
 </form>

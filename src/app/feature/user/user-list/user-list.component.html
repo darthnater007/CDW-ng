@@ -12,7 +12,7 @@
 
 <div class="container-flex" *ngIf="users">
     <div *ngFor = 'let user of users' class="grid-container">
-       <div class= "user-card" style = "background: grey">
+       <div class= "user-card" style = "background: grey; margin: 25px;">
            <div class="name" >
                <h2> {{ user.FirstName }} {{ user.LastName }}</h2>
            </div>
@@ -29,6 +29,16 @@
               <p> Email: {{ user.Email }}</p>
                <p> Phone: {{ user.Phone }}</p>
            </div>
+           <!-- Admin tools-- once user service is in place this should only be visible to site Admins-->
+           <div>
+               <h3>Admin Tools</h3>
+               <button routerLink='/edit/writer/{{ user.Id }}' class="btn btn-info btn-sm" title="Edit this writer"><i class="fas fa-user-edit"></i>Edit</button>
+               <button (click)='remove(user.Id)' class='btn btn-danger btn-sm' title='Remove this writer from the site database--all pieces on the site by this user must be removed first!'><i class="fas fa-user-times"></i>Remove</button>
+           </div>
+           <!-- My Information-- allow a user to edit their own details -->
+           <h3>My Information</h3>
+           <button routerLink='/edit/writer/{{ user.Id }}' class="btn btn-info btn-sm" title="Edit this writer"><i class="fas fa-user-edit"></i>Edit</button>
+           <button (click)='remove(user.Id)' class='btn btn-danger btn-sm' title='Remove myself from the site database--all pieces on the site by me must be removed first!  This action cannot be undone!!'><i class="fas fa-user-times"></i>Remove</button>
        </div>  
     </div>
 </div>

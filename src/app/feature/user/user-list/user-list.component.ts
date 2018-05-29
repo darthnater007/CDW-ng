@@ -29,6 +29,12 @@ constructor(private userSvc: UserService) { }
 //			console.error("User not logged in.");
 //		}  (No Sys Service yet)
   }
+
+remove(userId: number): void {
+    this.userSvc.remove(userId).subscribe(res => {
+        this.ngOnInit();
+    });
+}
 	
 //	setSortBy(column: string): void {
 //    this.sortBy = column; (no sortpipe yet)

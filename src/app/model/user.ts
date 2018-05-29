@@ -2,7 +2,6 @@ export class User {
     Id: number;
     UserName: string;
     Password: string;
-    ConfirmPassword: string;
     FirstName: string;
     LastName: string;
     Bio: string;
