@@ -5,17 +5,15 @@ export class Event {
     Description: string;
     EventName: string;
     Location: string;
-    EventDate: Date;
-    EventStart: Time;
-    EventEnd: Time;
+    EventStart: Date;
+    EventEnd: Date;
     
-    constructor(Id: string, HostedBy: string, Description: string, EventName: string, Location: string, EventDate: Date, EventStart: Time, EventEnd: Time){
+    constructor(Id: number, HostedBy: string, Description: string, EventName: string, Location: string, EventStart: Date, EventEnd: Date){
         this.Id = Id;
         this.HostedBy = HostedBy;
         this.Description = Description;
         this.EventName = EventName;
         this.Location = Location;
-        this.EventDate = EventDate;
         this.EventStart = EventStart;
         this.EventEnd = EventEnd;
     }

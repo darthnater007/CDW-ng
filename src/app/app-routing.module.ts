@@ -12,6 +12,8 @@ import { UserListComponent } from './feature/user/user-list/user-list.component'
 import { UserCreateComponent } from './feature/user/user-create/user-create.component';
 import { UserEditComponent } from './feature/user/user-edit/user-edit.component';
 
+mport { EventCreateComponent } from './core/calendar/event-create/event-create.component'
+
 const routes: Routes = [
     { path:'', redirectTo:'/', pathMatch: 'full' },
     
@@ -25,6 +27,8 @@ const routes: Routes = [
     { path: 'ourwriters' , component: UserListComponent },
     { path: 'create/writer', component: UserCreateComponent },
     { path: 'edit/writer/:id', component: UserEditComponent},
+    
+    { path: 'create/event', component: EventCreateComponent },
     
     { path:'**', component: HomeComponent }
 ];
