@@ -22,6 +22,7 @@ import { UserEditComponent } from './feature/user/user-edit/user-edit.component'
 
 // services
 import { UserService } from './service/user.service';
+import { EventComponent } from './model/event/event.component';
 
 
 
@@ -38,7 +39,8 @@ import { UserService } from './service/user.service';
       
     UserListComponent,
     UserCreateComponent,
-    UserEditComponent
+    UserEditComponent,
+    EventComponent
       
   ],
   imports: [
