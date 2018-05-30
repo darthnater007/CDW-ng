@@ -9,7 +9,7 @@ const url = "http://localhost:8080/Events/";
 @Injectable()
 export class EventService {
     
-    clean: void {
+    clean(): void {
         this.http.get(url + 'Clean');
     }
 
