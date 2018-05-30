@@ -101,4 +101,14 @@
         class="btn btn-lg btn-dark" >Create</button>
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
     </div>
+    <div class="form-group row" *ngIf='user.Username != "" && user.Password != "" && user.Password == confirmPassword && user.FirstName != "" && user.LastName != "" && user.Bio != "" && user.Email == confirmEmail'>
+        <button 
+        
+        class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
+    </div>
+    <div class="form-group row" *ngIf='user.Username == "" || user.Password == "" || user.Password != confirmPassword || user.FirstName == "" || user.LastName == "" || user.Bio == "" || user.Email != confirmEmail'>
+        <button 
+        class="btn btn-lg btn-dark" >Create</button>
+        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
+    </div>
 </form>

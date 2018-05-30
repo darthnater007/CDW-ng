@@ -1,3 +1,69 @@
-<p>
-  event-create works!
-</p>
+<a routerLink='/calendar'><-Back</a>
+<h1> {{ title }} </h1>
+<h4 class="text-danger">This is a page for Admins Only</h4>
+<h5>If you are not a site admin, please be cool and leave.</h5>
+<h4 *ngIf='!event'><br><br>Loading...</h4>
+
+
+<form class="container" *ngIf='event'>
+    <div class="form-group">
+        <label>
+            Hosted By:
+            <span *ngIf='event.HostedBy == "" ' class="text-danger"><sup>*</sup>Required</span>
+        </label>
+        <input class="form-control" type="text" [(ngModel)]='event.HostedBy' name="HostedBy" placeholder="Who is hosting this event?" maxlength="100" autofocus required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ event.HostedBy.length }} / 100 </small></h6>
+    </div>
+    <div class="form-group">
+        <label>
+            Event Name:
+            <span *ngIf='event.EventName == "" ' class="text-danger"><sup>*</sup>Required</span>
+        </label>
+        <input class="form-control" type="text" [(ngModel)]='event.EventName' name="HostedBy" placeholder="What is the event called?" maxlength="100" required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ event.EventName.length }} / 100 </small></h6>
+    </div>
+    <div class="form-group">
+        <label>
+            Description:
+            <span *ngIf='event.Description == "" ' class="text-danger"><sup>*</sup>Required</span>
+        </label>
+        <input class="form-control" type="text" [(ngModel)]='event.Description' name="Description" placeholder="What is the event all about?" maxlength="250" required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ event.Description.length }} / 250 </small></h6>
+    </div>
+    <div class="form-group">
+        <label>
+            Location:
+            <span *ngIf='event.Location == "" ' class="text-danger"><sup>*</sup>Required</span>
+        </label>
+        <input class="form-control" type="text" [(ngModel)]='event.Location' name="Location" placeholder="Where is the event taking place?" maxlength="100" autofocus required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ event.Location.length }} / 100 </small></h6>
+    </div>
+    <div class="form-group">
+        <label>
+            Start Date and Time:
+            <span *ngIf='event.EventStart == null ' class="text-danger"><sup>*</sup>Required</span>
+        </label>
+        <input class="form-control" type="datetime-local" [(ngModel)]='event.EventStart' name="EventStart" maxlength="250" required>
+        <h6 class=" character-count text-danger"><small>If you are not using Chrome or Edge as your browser, this display may be incorrect. </small>
+        <small class="character-count text-muted">The correct input format is <br><q>yyyy-MM-dd T HH:MM</q> (where the hours are in military time).</small></h6>
+        <small class="character-count text-muted">We recommend you download Google Chrome, from <a href="https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwl7nYBRCwARIsAL7O7dFtEyZzzTJzPpNJd2xZfXF2cDR_heK7KZ4Ze8ep12P4D73xmIzRX2caApOFEALw_wcB" target="_blank"> THIS LINK </a> </small>
+    </div>
+    <div class="form-group">
+        <label>
+            End Date and Time:
+        </label>
+        <input class="form-control" type="datetime-local" [(ngModel)]='event.EventEnd' name="EventEnd" maxlength="250">
+        <h6 class=" character-count text-danger"><small>If you are not using Chrome or Edge as your browser, this display may be incorrect. </small>
+        <small class="character-count text-muted">The correct input format is <br><q>yyyy-MM-dd T HH:MM</q> (where the hours are in military time).</small></h6>
+        <small class="character-count text-muted">We recommend you download Google Chrome, from <a href="https://www.google.com/chrome/?brand=CHBD&gclid=Cj0KCQjwl7nYBRCwARIsAL7O7dFtEyZzzTJzPpNJd2xZfXF2cDR_heK7KZ4Ze8ep12P4D73xmIzRX2caApOFEALw_wcB" target="_blank"> THIS LINK </a> </small>
+        <small class="character-count text-muted"><br>If left blank, the end date and time will appear as a <q>?</q> on the list page.</small>
+    </div>
+    <div class="form-group row" *ngIf='event.HostedBy != "" && event.Description != "" && event.EventName != "" && event.Location != "" && event.EventStart != null'>
+        <button class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
+    </div>
+    <div class="form-group row" *ngIf='event.HostedBy == "" || event.Description == "" || event.EventName == "" || event.Location == "" || event.EventStart == null'>
+        <button 
+        class="btn btn-lg btn-dark" >Create</button>
+        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
+    </div>
+</form>
