@@ -9,9 +9,10 @@ const url = "http://localhost:8080/Events/";
 @Injectable()
 export class EventService {
     
-    clean(): void {
-        this.http.get(url + 'Clean');
-    }
+//    clean() {
+//        console.log("clean function accessed inside service");
+//        this.http.get(url + 'Clean');
+//    }
 
 	list(): Observable<Event[]> {
 		return this.http.get(url + 'List') as Observable<Event[]>;

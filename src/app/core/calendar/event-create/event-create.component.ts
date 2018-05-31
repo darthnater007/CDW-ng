@@ -18,6 +18,7 @@ export class EventCreateComponent implements OnInit {
 create() {
 	console.log('create a event...');
 	this.eventSvc.create(this.event).subscribe(resp => {
+        console.log(this.event);
 		this.resp = resp;
 		this.router.navigate(['/calendar']);
 		});

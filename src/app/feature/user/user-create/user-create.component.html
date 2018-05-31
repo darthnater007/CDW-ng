@@ -69,7 +69,7 @@
            <label>
                 Email:
             </label>
-            <input class="form-control" type="email" [(ngModel)]='user.Email' name="email" placeholder="Your Email Address" maxlength="75">
+            <input class="form-control" type="email" [(ngModel)]='user.Email' name="Email" placeholder="Your Email Address" maxlength="75">
         <h6 class="character-count text-muted"><small>Characters Used: {{ user.Password.length }} / 75 <br><sup>*</sup>Emails will only be shared with other members. </small></h6>
         </div>
         <div class="col">
@@ -92,19 +92,7 @@
         <h6><small> <sup>*</sup> Phone numbers will only be shared with other members. </small></h6>
     </div>
     <div class="form-group row" *ngIf='user.Username != "" && user.Password != "" && user.Password == confirmPassword && user.FirstName != "" && user.LastName != "" && user.Bio != "" && user.Email == confirmEmail'>
-        <button 
-        
-        class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
-    </div>
-    <div class="form-group row" *ngIf='user.Username == "" || user.Password == "" || user.Password != confirmPassword || user.FirstName == "" || user.LastName == "" || user.Bio == "" || user.Email != confirmEmail'>
-        <button 
-        class="btn btn-lg btn-dark" >Create</button>
-        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
-    </div>
-    <div class="form-group row" *ngIf='user.Username != "" && user.Password != "" && user.Password == confirmPassword && user.FirstName != "" && user.LastName != "" && user.Bio != "" && user.Email == confirmEmail'>
-        <button 
-        
-        class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
+        <button class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
     </div>
     <div class="form-group row" *ngIf='user.Username == "" || user.Password == "" || user.Password != confirmPassword || user.FirstName == "" || user.LastName == "" || user.Bio == "" || user.Email != confirmEmail'>
         <button 
