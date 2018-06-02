@@ -24,7 +24,7 @@ import { UserEditComponent } from './feature/user/user-edit/user-edit.component'
 
 import { PieceCreateComponent } from './feature/piece/piece-create/piece-create.component';
 import { PieceEditComponent } from './feature/piece/piece-edit/piece-edit.component';
-import { PieceDetailComponent } from './piece-detail/piece-detail.component';
+import { PieceDetailComponent } from './feature/piece/piece-detail/piece-detail.component';
 import { PublicationListComponent } from './feature/piece/publication-list/publication-list.component';
 import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-list.component';
 
