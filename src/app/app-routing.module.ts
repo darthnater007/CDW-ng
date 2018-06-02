@@ -12,7 +12,16 @@ import { UserListComponent } from './feature/user/user-list/user-list.component'
 import { UserCreateComponent } from './feature/user/user-create/user-create.component';
 import { UserEditComponent } from './feature/user/user-edit/user-edit.component';
 
-import { EventCreateComponent } from './core/calendar/event-create/event-create.component'
+import { EventCreateComponent } from './core/calendar/event-create/event-create.component';
+import { EventEditComponent } from './core/calendar/event-edit/event-edit.component';
+
+import { PublicationListComponent } from './feature/piece/publication-list/publication-list.component';
+import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-list.component';
+import { PieceCreateComponent } from './feature/piece/piece-create/piece-create.component';
+import { PieceEditComponent } from './feature/piece/piece-edit/piece-edit.component';
+import { PieceDetailComponent } from './feature/piece/piece-detail/piece-detail.component';
+
+
 
 const routes: Routes = [
     { path:'', redirectTo:'/', pathMatch: 'full' },
@@ -29,6 +38,14 @@ const routes: Routes = [
     { path: 'edit/writer/:id', component: UserEditComponent},
     
     { path: 'create/event', component: EventCreateComponent },
+    { path: 'edit/event/:id', component: EventEditComponent },
+    
+    { path: 'publications', component: PublicationListComponent },
+    { path: 'workshop', component: WorkshopListComponent },
+    { path: 'create/piece', component: PieceCreateComponent },
+    { path: 'edit/piece/:id', component: PieceEditComponent },
+    { path: 'piece/detail/:id',  component: PieceDetailComponent },
+    
     
     { path:'**', component: HomeComponent }
 ];

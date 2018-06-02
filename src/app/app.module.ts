@@ -15,11 +15,18 @@ import { AboutComponent } from './core/about/about.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { CalendarComponent } from './core/calendar/calendar.component';
 import { EventCreateComponent } from './core/calendar/event-create/event-create.component';
+import { EventEditComponent } from './core/calendar/event-edit/event-edit.component';
 
 // feature components
 import { UserListComponent } from './feature/user/user-list/user-list.component';
 import { UserCreateComponent } from './feature/user/user-create/user-create.component';
 import { UserEditComponent } from './feature/user/user-edit/user-edit.component';
+
+import { PieceCreateComponent } from './feature/piece/piece-create/piece-create.component';
+import { PieceEditComponent } from './feature/piece/piece-edit/piece-edit.component';
+import { PieceDetailComponent } from './piece-detail/piece-detail.component';
+import { PublicationListComponent } from './feature/piece/publication-list/publication-list.component';
+import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-list.component';
 
 
 // services
@@ -42,7 +49,15 @@ import { EventService } from './service/event.service';
     UserListComponent,
     UserCreateComponent,
     UserEditComponent,
+      
     EventCreateComponent,
+    EventEditComponent,
+      
+    PieceCreateComponent,
+    PieceEditComponent,
+    PieceDetailComponent,
+    PublicationListComponent,
+    WorkshopListComponent,
       
   ],
   imports: [
