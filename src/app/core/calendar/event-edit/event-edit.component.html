@@ -59,11 +59,11 @@
         <small class="character-count text-muted"><br>If left blank or the date is not valid, the end date and time will appear as a <q>?</q> on the list page.</small>
     </div>
     <div class="form-group row" *ngIf='event.HostedBy != "" && event.Description != "" && event.EventName != "" && event.Location != "" && event.EventStart != null'>
-        <button class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
+        <button class="btn btn-lg btn-success align-center"  (click)='change()'>Update</button>
     </div>
     <div class="form-group row" *ngIf='event.HostedBy == "" || event.Description == "" || event.EventName == "" || event.Location == "" || event.EventStart == null'>
         <button 
-        class="btn btn-lg btn-dark" >Create</button>
+        class="btn btn-lg btn-dark" >Update</button>
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
     </div>
 </form>
