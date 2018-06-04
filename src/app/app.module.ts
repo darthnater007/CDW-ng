@@ -32,6 +32,7 @@ import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-li
 // services
 import { UserService } from './service/user.service';
 import { EventService } from './service/event.service';
+import { PieceService } from './service/piece.service';
 
 
 
@@ -68,7 +69,8 @@ import { EventService } from './service/event.service';
   ],
   providers: [
       UserService,
-      EventService
+      EventService,
+      PieceService
   ],
   bootstrap: [AppComponent]
 })
