@@ -1,3 +1,39 @@
-<p>
-  workshop-list works!
-</p>
+<h1> {{ title }}</h1>
+
+<a routerLink="/create/piece" class="btn btn-primary">
+    <span>
+        Add A Piece <i class="fas fa-pen-square"></i>
+    </span>
+</a>
+
+
+<h4 *ngIf="!pieces">Loading...</h4>
+
+
+<div class="container-flex" *ngIf="pieces">
+    <div *ngFor = 'let piece of pieces' class="grid-container">
+       <div class= "piece-card" style = "background: grey; margin: 25px;">
+           <div>
+               <h2> {{ piece.Title }}</h2>
+               <h5>By:  {{ piece.User.FirstName }} {{ piece.User.LastName }}</h5>
+               <h6>Submitted on:  {{ piece.Submitted }} </h6>
+           </div>
+           <div>
+               <p> Genre:  {{ piece.Genre }}</p>
+               <p> Description:  {{ piece.Description }}</p>
+           </div>
+           <div>
+               <a href="#" target="_blank">Click Here To Read <q>{{ piece.Title }}</q></a>
+           </div>
+           <!-- Admin tools-- once piece service is in place this should only be visible to site Admins-->
+           <div>
+               <h3>Admin Tools</h3>
+               <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database!  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
+           </div>
+           <!-- My Information-- allow signed in user to work with their own pieces -->
+           <h3>My Information</h3>
+           <button routerLink='/edit/writer/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
+           <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
+       </div>  
+    </div>
+</div>
