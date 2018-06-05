@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { User } from '../../../model/user';
+
 import { UserService } from '../../../service/user.service';
 
 @Component({
@@ -16,7 +18,6 @@ export class UserCreateComponent implements OnInit {
 	user: User = new User(0, '', '', '', '', '', '', '', '', false);
 	
 create() {
-	console.log('create a user...');
 	this.userSvc.create(this.user).subscribe(resp => {
 		this.resp = resp;
 		this.router.navigate(['/ourwriters']);

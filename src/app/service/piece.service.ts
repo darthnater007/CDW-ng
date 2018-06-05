@@ -14,10 +14,15 @@ export class PieceService {
 		return this.http.get(url + 'Workshop') as Observable<Piece[]>;
 	}
     
-    	listPublications(): Observable<Piece[]> {
+    listPublications(): Observable<Piece[]> {
 		return this.http.get(url + 'Publications') as Observable<Piece[]>;
 	}
 
+    upload(file: File){
+        console.log("piecesvc upload");
+        this.http.post(url + "FileUpload", file);
+    }
+    
 	create(piece: Piece): Observable<any>{
 		console.log("piecesvc.create...");
 		return this.http.post(url + "Add", piece) as Observable<any>;
