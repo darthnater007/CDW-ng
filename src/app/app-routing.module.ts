@@ -42,7 +42,7 @@ const routes: Routes = [
     
     { path: 'publications', component: PublicationListComponent },
     { path: 'workshop', component: WorkshopListComponent },
-    { path: 'create/piece', component: PieceCreateComponent },
+    { path: 'create/piece/:type', component: PieceCreateComponent },
     { path: 'edit/piece/:id', component: PieceEditComponent },
     { path: 'piece/detail/:id',  component: PieceDetailComponent },
     
