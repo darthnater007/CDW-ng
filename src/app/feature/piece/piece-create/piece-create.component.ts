@@ -19,15 +19,16 @@ export class PieceCreateComponent implements OnInit {
     titlePub: string = "Add a piece to our Publications";
     
 	resp: any;
-	piece: Piece = new Piece(0, null, '', '', '', '', null, false);
+	piece: Piece = new Piece(0, null, null, '', '', '', '', null, false);
     
     //this will be unneccessary for workshop (still needed for publications) after login function is working
     users: User[];
     
-    file: File;
-    
-    upload() {
-            //send file through service to backend
+    upload(files: FileList){
+        this.piece.UploadFile = files.item(0);
+        this.piece.FileName = this.piece.UploadFile.name;
+        console.log("upload method accessed");
+        console.log("Piece Object = " this.piece);
     }
 	
     create() {

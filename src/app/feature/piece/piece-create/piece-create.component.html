@@ -10,10 +10,12 @@
 <form class='container' *ngIf=piece method="post" enctype="multipart/form-data">
     <label>
         Select a File to Upload:
+        <span *ngIf='piece.UploadFile == null ' class="text-danger"><sup>*</sup>Required</span>
     </label>
-    <input class="form-control-file" type="file" [(ngModel)]='file' name="file" id="file" accept=".pdf">
+    <input class="form-control-file" type="file" (change)="upload($event.target.files)" name="file" id="file" accept=".pdf">
+     <span *ngIf='piece.UploadFile == null '><sup></sup><br></span>
+    <span *ngIf='piece.UploadFile !=null' class="text-success">File Upploaded!</span>
     <h6><small class='text-muted'>Only PDF files will be accepted.  In your text editor (e.g. Microsoft Word) go to File->Save As, and make sure to change the file type to "PDF" in the resulting dialog box.  Then hit save.</small></h6>
-    <button class="btn btn-success" >Upload</button>
 </form>
 
 <!-- this form should only be visible after a successful file upload -->
@@ -55,10 +57,10 @@
     </div>
   
   
-    <div class="form-group row" *ngIf='piece.User != null && piece.Title != "" && piece.Genre != "" && piece.Description != "" '>
+    <div class="form-group row" *ngIf='piece.User != null && piece.UploadFile != null && piece.Title != "" && piece.Genre != "" && piece.Description != "" '>
         <button class="btn btn-lg btn-success align-center"  (click)='create()'>Create</button>
     </div>
-    <div class="form-group row" *ngIf='piece.User == null || piece.Title == "" || piece.Genre == "" || piece.Description == "" || piece.Description == "" '>
+    <div class="form-group row" *ngIf='piece.User == null || piece.UploadFile == null || piece.Title == "" || piece.Genre == "" || piece.Description == "" || piece.Description == "" '>
         <button 
         class="btn btn-lg btn-dark" >Create</button>
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>

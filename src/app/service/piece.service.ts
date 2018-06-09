@@ -19,7 +19,7 @@ export class PieceService {
 	}
 
     upload(file: File){
-        console.log("piecesvc upload");
+        console.log("piecesvc upload...");
         this.http.post(url + "FileUpload", file);
     }
     
