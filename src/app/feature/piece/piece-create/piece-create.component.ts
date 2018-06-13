@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import {FileUploadModule} from 'primeng/primeng';
 
 import { Piece } from '../../../model/piece';
 import { User } from '../../../model/user'
@@ -19,17 +20,21 @@ export class PieceCreateComponent implements OnInit {
     titlePub: string = "Add a piece to our Publications";
     
 	resp: any;
-	piece: Piece = new Piece(0, null, null, '', '', '', '', null, false);
+	piece: Piece = new Piece(0, null, '', '', '', '', null, false);
     
-    //this will be unneccessary for workshop (still needed for publications) after login function is working
+    // this will be unneccessary for workshop (still needed for publications) after login function is working
     users: User[];
     
     upload(files: FileList){
-        this.piece.UploadFile = files.item(0);
-        this.piece.FileName = this.piece.UploadFile.name;
+        let file: File = files.item(0);
+        this.piece.FileName = file.name;
         console.log("upload method accessed");
-        console.log("Piece Object = " this.piece);
-    }
+        console.log("File Name = " + this.piece.FileName)
+        console.log("File Object = " + file);
+        this.pieceSvc.upload(file).subscribe(resp => {
+            this.resp = resp;
+        }
+        )};
 	
     create() {
         console.log('create a piece...');

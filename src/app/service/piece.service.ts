@@ -18,9 +18,9 @@ export class PieceService {
 		return this.http.get(url + 'Publications') as Observable<Piece[]>;
 	}
 
-    upload(file: File){
+    upload(file: File): Observable<Piece[]> {
         console.log("piecesvc upload...");
-        this.http.post(url + "FileUpload", file);
+        return this.http.post(url + "FileUpload", file)  as Observable<Piece[]>;
     }
     
 	create(piece: Piece): Observable<any>{

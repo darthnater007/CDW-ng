@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { FacebookModule } from 'ngx-facebook';
+import { FileUploadModule } from 'primeng/primeng';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -65,7 +65,8 @@ import { PieceService } from './service/piece.service';
     BrowserModule,
     AppRoutingModule,
 	HttpClientModule,
-	FormsModule
+	FormsModule,
+    FileUploadModule
   ],
   providers: [
       UserService,

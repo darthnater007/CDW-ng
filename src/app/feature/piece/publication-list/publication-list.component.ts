@@ -21,6 +21,7 @@ constructor(private pieceSvc: PieceService) { }
   ngOnInit() {
 		this.pieceSvc.listPublications().subscribe(pieces => {
 			this.pieces = pieces;
+            console.log("Pieces list =" + pieces);
 		});
 	  
 //	  if(this.sysSvc.data.piece.loggedIn){
