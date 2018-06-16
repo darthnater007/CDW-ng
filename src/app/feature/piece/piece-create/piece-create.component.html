@@ -7,16 +7,13 @@
 <h5>Please fill out and submit the form below to submit a piece.</h5>
 <h4 *ngIf='!piece'><br><br>Loading...</h4>
 
-<form class='container' *ngIf=piece enctype="multipart/form-data">
+<form class='container' *ngIf=piece method="post"  enctype="multipart/form-data">
     <label>
         Select a File to Upload:
         <span *ngIf='piece.UploadFile == null ' class="text-danger"><sup>*</sup>Required</span>
     </label>
-    <input class="form-control-file" type="file" enctype="multipart/form-data" (change)="upload($event.target.files)" name="file" id="file" accept=".pdf" >
-<!--
-    <p-fileUpload name="file" url="http://localhost:8080/Pieces/FileUpload"
-    accept=".pdf" onBeforeUpload='nameFile($event)'></p-fileUpload>
--->
+    <input class="form-control-file" type="file" (change)="upload($event.target.files)" name="files" id="files" accept=".pdf" >
+    
     <h6><small class='text-muted'>Only PDF files will be accepted.  In your text editor (e.g. Microsoft Word) go to File->Save As, and make sure to change the file type to "PDF" in the resulting dialog box.  Then hit save.</small></h6>
 </form>
 

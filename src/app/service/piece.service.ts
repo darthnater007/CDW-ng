@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { HttpClient } from "@angular/common/http";
+import { HttpHeaders } from '@angular/common/http';
 
 import { Piece } from "../model/piece";
 
 const url = "http://localhost:8080/Pieces/";
+
+
 
 @Injectable()
 export class PieceService {
@@ -18,9 +21,11 @@ export class PieceService {
 		return this.http.get(url + 'Publications') as Observable<Piece[]>;
 	}
 
-    upload(file: File): Observable<Piece[]> {
-        console.log("piecesvc upload...");
-        return this.http.post(url + "FileUpload", file)  as Observable<Piece[]>;
+    upload(file: File): Observable<any> {
+        console.log("piecesvc upload...");const endpoint = 'your-destination-url';
+    const formData: FormData = new FormData();
+    formData.append('fileKey', file, file.name);
+    return this.http.post(url + "FileUpload", formData)  as Observable<Piece[]>;
     }
     
 	create(piece: Piece): Observable<any>{

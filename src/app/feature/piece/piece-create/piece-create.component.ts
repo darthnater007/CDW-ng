@@ -30,9 +30,13 @@ export class PieceCreateComponent implements OnInit {
         this.piece.FileName = file.name;
         console.log("upload method accessed");
         console.log("File Name = " + this.piece.FileName)
-        console.log("File Object = " + file);
+        console.log("File Object :");
+        console.log("Name = " + file.name);
+        console.log("Size = " + file.size);
+        console.log("Type = " + file.type);
         this.pieceSvc.upload(file).subscribe(resp => {
             this.resp = resp;
+            console.log(resp);
         }
         )};
 	
