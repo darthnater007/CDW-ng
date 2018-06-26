@@ -19,33 +19,36 @@ export class PieceCreateComponent implements OnInit {
 	titleWork: string = "Submit a Piece for Workshop";
     titlePub: string = "Add a piece to our Publications";
     
+    file: File;
 	resp: any;
 	piece: Piece = new Piece(0, null, '', '', '', '', null, false);
     
     // this will be unneccessary for workshop (still needed for publications) after login function is working
     users: User[];
     
-    upload(files: FileList){
-        let file: File = files.item(0);
-        this.piece.FileName = file.name;
-        console.log("upload method accessed");
-        console.log("File Name = " + this.piece.FileName)
-        console.log("File Object :");
-        console.log("Name = " + file.name);
-        console.log("Size = " + file.size);
-        console.log("Type = " + file.type);
-        this.pieceSvc.upload(file).subscribe(resp => {
-            this.resp = resp;
-            console.log(resp);
+    getFileName(files: FileList){
+        this.file = files.item(0);
+        this.piece.FileName = files.item(0).name;
+    }
+    
+    upload(){
+
+        this.pieceSvc.upload(this.piece.FileName, this.file).subscribe(resp => {
+            if(resp[0] == 'success'){
+                this.create();
+                    }else{
+            alert("Oops! Your file was not uploaded properly... Please try again.")
         }
-        )};
+        });
+    }
 	
     create() {
-        console.log('create a piece...');
-        this.pieceSvc.create(this.piece).subscribe(resp => {
-            this.resp = resp;
-            this.router.navigate(['/workshop']);
+            console.log('create a piece...');
+            this.pieceSvc.create(this.piece).subscribe(resp => {
+                this.resp = resp;
+                this.router.navigate(['/workshop']);
             });
+
     }
 
 constructor(private pieceSvc: PieceService, private userSvc: UserService, private router: Router, private route: ActivatedRoute) { }

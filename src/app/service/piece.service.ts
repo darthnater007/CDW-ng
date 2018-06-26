@@ -21,15 +21,14 @@ export class PieceService {
 		return this.http.get(url + 'Publications') as Observable<Piece[]>;
 	}
 
-    upload(file: File): Observable<any> {
-        console.log("piecesvc upload...");const endpoint = 'your-destination-url';
+    upload(name: string, file: File): Observable<string[]> {
     const formData: FormData = new FormData();
-    formData.append('fileKey', file, file.name);
-    return this.http.post(url + "FileUpload", formData)  as Observable<Piece[]>;
+    formData.append("name", name);
+    formData.append( "file" , file);
+    return this.http.post(url + "FileUpload", formData) as Observable<string[]>;
     }
     
 	create(piece: Piece): Observable<any>{
-		console.log("piecesvc.create...");
 		return this.http.post(url + "Add", piece) as Observable<any>;
 	}
 
