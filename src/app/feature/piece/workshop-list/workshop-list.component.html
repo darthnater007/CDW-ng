@@ -23,7 +23,7 @@
                <p> Description:  {{ piece.Description }}</p>
            </div>
            <div>
-               <a href="#" target="_blank">Click Here To Read <q>{{ piece.Title }}</q></a>
+               <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Download <q>{{ piece.Title }}</q></button>
            </div>
            <!-- Admin tools-- once piece service is in place this should only be visible to site Admins-->
            <div>

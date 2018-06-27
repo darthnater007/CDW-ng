@@ -46,7 +46,11 @@ export class PieceCreateComponent implements OnInit {
             console.log('create a piece...');
             this.pieceSvc.create(this.piece).subscribe(resp => {
                 this.resp = resp;
-                this.router.navigate(['/workshop']);
+                if (this.type == 'publication'){
+                    this.router.navigate(['/publications']);
+                }else{
+                    this.router.navigate(['/workshop']);
+                }
             });
 
     }
@@ -55,7 +59,7 @@ constructor(private pieceSvc: PieceService, private userSvc: UserService, privat
 
   ngOnInit() {
       this.route.params.subscribe(parms => this.type = parms['type']);
-      if (this.type == 'publicaton'){
+      if (this.type == 'publication'){
           this.piece.Publication = true;
       }else{
           this.piece.Publication = false;

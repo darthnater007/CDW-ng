@@ -28,15 +28,20 @@ export class PieceService {
     return this.http.post(url + "FileUpload", formData) as Observable<string[]>;
     }
     
+    viewPiece(fileName: string): Observable<Blob> {
+         let options = {responseType: 'blob' };
+        return this.http.get(url + "ViewPiece?fileName=" + fileName, options) as Observable<Blob>;
+    }
+    
 	create(piece: Piece): Observable<any>{
 		return this.http.post(url + "Add", piece) as Observable<any>;
 	}
 
-	get(id): Observable<Piece[]> {
+	get(id: number): Observable<Piece[]> {
 		return this.http.get(url+"Get?id="+id) as Observable<Piece[]>;
 	  }
 
-	remove(id): Observable<any> {
+	remove(id: number): Observable<any> {
 		return this.http.get(url+"Remove?id="+id) as Observable<any>;
 	  }
 
