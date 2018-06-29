@@ -11,7 +11,7 @@
 
 
 <div class="container-flex" *ngIf="pieces">
-    <div *ngFor = 'let piece of pieces' class="grid-container">
+    <div *ngFor = 'let piece of pieces | sortdown: sortBy' class="grid-container">
        <div class= "piece-card" style = "background: grey; margin: 25px;">
            <div>
                <h2> {{ piece.Title }}</h2>

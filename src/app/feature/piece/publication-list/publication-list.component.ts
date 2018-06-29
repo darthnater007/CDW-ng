@@ -5,6 +5,8 @@ import { Piece } from '../../../model/piece';
 
 import { PieceService } from '../../../service/piece.service';
 
+import { SortPipe } from '../../../pipe/sort.pipe';
+
 @Component({
   selector: 'app-publication-list',
   templateUrl: './publication-list.component.html',
@@ -15,7 +17,7 @@ export class PublicationListComponent implements OnInit {
 	// piece : Piece; (no sys service yet)
 	
 	title : string =  'Publications';
-	// sortBy: string = "Id"; (no pipe yet)
+	sortBy: string = "Submitted";
 	
 constructor(private pieceSvc: PieceService) { }
 
@@ -45,8 +47,8 @@ view(fileName: string): void {
     })
 }
 	
-//	setSortBy(column: string): void {
-//    this.sortBy = column; (no sortpipe yet)
-//  }
+	setSortBy(column: string): void {
+    this.sortBy = column;
+  }
 
 }

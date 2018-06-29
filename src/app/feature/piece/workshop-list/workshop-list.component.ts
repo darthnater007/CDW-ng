@@ -5,6 +5,8 @@ import { Piece } from '../../../model/piece';
 
 import { PieceService } from '../../../service/piece.service';
 
+import { SortdownPipe } from '../../../pipe/sortdown.pipe';
+
 @Component({
   selector: 'app-workshop-list',
   templateUrl: './workshop-list.component.html',
@@ -15,7 +17,7 @@ export class WorkshopListComponent implements OnInit {
 	// piece : Piece; (no sys service yet)
 	
 	title : string =  'Workshop';
-	// sortBy: string = "Id"; (no pipe yet)
+    sortBy: string = "Submitted";
     
     LocalTime: Date;
     
@@ -48,8 +50,8 @@ view(fileName: string): void {
     })
 }
 	
-//	setSortBy(column: string): void {
-//    this.sortBy = column; (no sortpipe yet)
-//  }
+	setSortBy(column: string): void {
+    this.sortBy = column;
+  }
 
 }

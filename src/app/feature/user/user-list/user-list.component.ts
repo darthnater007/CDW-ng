@@ -4,6 +4,8 @@ import { User } from '../../../model/user';
 
 import { UserService } from '../../../service/user.service';
 
+import { SortPipe } from '../../../pipe/sort.pipe';
+
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
@@ -14,7 +16,7 @@ export class UserListComponent implements OnInit {
 	// user : User; (no sys service yet)
 	
 	title : string =  'Our Writers';
-	// sortBy: string = "Id"; (no pipe yet)
+	 sortBy: string = "LastName";
 	
 constructor(private userSvc: UserService) { }
 
@@ -22,13 +24,14 @@ constructor(private userSvc: UserService) { }
 		this.userSvc.list().subscribe(users => {
 			this.users = users;
 		});
+
+  }
 	  
 //	  if(this.sysSvc.data.user.loggedIn){
 //			this.user = this.sysSvc.data.user.instance;
 //		}else{
 //			console.error("User not logged in.");
 //		}  (No Sys Service yet)
-  }
 
 remove(userId: number): void {
     this.userSvc.remove(userId).subscribe(res => {
@@ -36,8 +39,8 @@ remove(userId: number): void {
     });
 }
 	
-//	setSortBy(column: string): void {
-//    this.sortBy = column; (no sortpipe yet)
-//  }
+setSortBy(column: string): void {
+    this.sortBy = column;
+}
 
 }

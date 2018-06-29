@@ -33,6 +33,8 @@ import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-li
 import { UserService } from './service/user.service';
 import { EventService } from './service/event.service';
 import { PieceService } from './service/piece.service';
+import { SortPipe } from './pipe/sort.pipe';
+import { SortdownPipe } from './pipe/sortdown.pipe';
 
 
 
@@ -59,6 +61,8 @@ import { PieceService } from './service/piece.service';
     PieceDetailComponent,
     PublicationListComponent,
     WorkshopListComponent,
+    SortPipe,
+    SortdownPipe,
       
   ],
   imports: [

@@ -9,7 +9,7 @@
 
 
 <div class="container-flex" *ngIf="events">
-    <div *ngFor = 'let event of events' class="grid-container">
+    <div *ngFor = 'let event of events |sortdown: sortBy' class="grid-container">
        <div class= "event-card" style = "background: grey; margin: 25px;">
            <div>
                <h2> {{ event.EventName }}</h2>

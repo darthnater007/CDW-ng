@@ -4,6 +4,8 @@ import { Event } from '../../model/event';
 
 import { EventService } from '../../service/event.service';
 
+import { SortdownPipe } from '../../pipe/sortdown.pipe';
+
 @Component({
   selector: 'app-event-list',
   templateUrl: './calendar.component.html',
@@ -13,7 +15,7 @@ export class CalendarComponent implements OnInit {
 	events : Event[];
 	
 	title : string =  'Calendar of Upcoming Events';
-	// sortBy: string = "Id"; (no pipe yet)
+	sortBy: string = "EventStart";
 	
 constructor(private eventSvc: EventService) { }
 
@@ -35,8 +37,8 @@ remove(eventId: number): void {
     });
 }
 	
-//	setSortBy(column: string): void {
-//    this.sortBy = column; (no sortpipe yet)
-//  }
+	setSortBy(column: string): void {
+    this.sortBy = column;
+  }
 
 }
