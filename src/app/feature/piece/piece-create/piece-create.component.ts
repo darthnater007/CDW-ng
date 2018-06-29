@@ -43,7 +43,7 @@ export class PieceCreateComponent implements OnInit {
     }
 	
     create() {
-            console.log('create a piece...');
+            console.log(this.piece.Submitted.getTime);
             this.pieceSvc.create(this.piece).subscribe(resp => {
                 this.resp = resp;
                 if (this.type == 'publication'){

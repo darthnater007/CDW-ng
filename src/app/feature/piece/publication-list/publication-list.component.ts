@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {saveAs as importedSaveAs} from "file-saver";
 
 import { Piece } from '../../../model/piece';
 
@@ -35,6 +36,13 @@ remove(pieceId: number): void {
     this.pieceSvc.remove(pieceId).subscribe(res => {
         this.ngOnInit();
     });
+}
+
+view(fileName: string): void {
+    this.pieceSvc.viewPiece(fileName).subscribe(blob => {
+        importedSaveAs(blob, fileName);
+        window.open(window.URL.createObjectURL(blob));
+    })
 }
 	
 //	setSortBy(column: string): void {

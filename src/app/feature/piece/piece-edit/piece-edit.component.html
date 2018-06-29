@@ -1,3 +1,66 @@
-<p>
-  piece-edit works!
-</p>
+<a *ngIf='piece.Publication == true' routerLink='/publications'><-Back</a>
+<a *ngIf='piece.Publication == false' routerLink='/workshop'><-Back</a>
+<h1> {{ title }}</h1>
+<h5>Please change fields below and submit the form below to edit this piece.</h5>
+<h4 *ngIf='!piece'><br><br>Loading...</h4>
+<label>Current File:  {{ piece.FileName }}</label>
+<button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#newFile">Choose a New File</button>
+<div class="collapse" id="newFile">
+    <form class='container' *ngIf=piece method="post"  enctype="multipart/form-data">
+        <label>
+            Select a File to Upload:
+            <span *ngIf='piece.FileName == "" ' class="text-danger"><sup>*</sup>Required</span>
+        </label>
+        <input class="form-control-file" type="file" (change)="getNewFile($event.target.files)" name="files" id="files" accept=".pdf" >
+        <h6><small class='text-muted'>Only PDF files will be accepted.  In your text editor (e.g. Microsoft Word) go to File->Save As, and make sure to change the file type to "PDF" in the resulting dialog box.  Then hit save.</small></h6>
+    </form>
+</div>
+
+<!-- this form should only be visible after a successful file upload -->
+<form class="container" *ngIf='piece'>
+   <!-- user dropdown for Pub, once login feature works this should choose logged in user automatically on workshop pieces-->
+   <div class="form-group" *ngIf='users'>
+       <label>
+           Writer:
+           <span *ngIf='piece.User == null ' class="text-danger"><sup>*</sup>Required</span>
+       </label>
+        <select class="form-control" [(ngModel)]='piece.User' name="User">
+            <option value="null" disabled selected hidden>Select Writer</option>
+            <option class="" *ngFor = 'let user of users' [ngValue]="user">{{ user.FirstName }} {{ user.LastName }}</option>
+        </select>
+   </div>
+    <div class="form-group">
+            <label>
+                Title:
+                <span *ngIf='piece.Title == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+            <input class="form-control" type="text" [(ngModel)]='piece.Title' name="Title" placeholder="Choose a Title for This Piece" maxlength="100" autofocus required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ piece.Title.length }} / 100 </small></h6>
+    </div>
+    <div class="form-group">
+            <label>
+                Genre:
+                <span *ngIf='piece.Title == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+            <input class="form-control" type="text" [(ngModel)]='piece.Genre' name="Genre" placeholder="What Genre is This Piece? -- eg. Fiction, Poetry, Sci-Fi, etc." maxlength="25" autofocus required>
+        <h6 class=" character-count text-muted"><small>Characters Used: {{ piece.Genre.length }} / 25 </small></h6>
+    </div>
+    <div class="form-group">
+            <label>
+                Description:
+                <span *ngIf='piece.Description == "" ' class="text-danger"><sup>*</sup>Required</span>
+            </label>
+        <textarea style="height: 150px; overflow-y: auto;" class="form-control align-text-top" type="text" [(ngModel)]='piece.Description' name="Description" placeholder="In brief, what is the piece about or where did the idea come from?" maxlength="250" required></textarea>
+        <h6 class=" character-count text-muted"><small>Character Used: {{ piece.Description.length }} / 250 </small></h6>
+    </div>
+  
+  
+    <div class="form-group row" *ngIf='piece.User != null && piece.Title != "" && piece.Genre != "" && piece.Description != "" '>
+        <button class="btn btn-lg btn-success align-center"  (click)= 'change()'>Update</button>
+    </div>
+    <div class="form-group row" *ngIf='piece.User == null || piece.Title == "" || piece.Genre == "" || piece.Description == "" || piece.Description == "" '>
+        <button 
+        class="btn btn-lg btn-dark" >Update</button>
+        <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
+    </div>
+</form>

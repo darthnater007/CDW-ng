@@ -29,7 +29,7 @@ export class PieceService {
     }
     
     viewPiece(fileName: string): Observable<Blob> {
-         let options = {responseType: 'blob' };
+         let options = {responseType: 'blob' as 'json'};
         return this.http.get(url + "ViewPiece?fileName=" + fileName, options) as Observable<Blob>;
     }
     
@@ -44,6 +44,10 @@ export class PieceService {
 	remove(id: number): Observable<any> {
 		return this.http.get(url+"Remove?id="+id) as Observable<any>;
 	  }
+    
+    removeFile(fileName: string): Observable<string[]>{
+        return this.http.get(url + "RemoveFile?fileName=" + fileName) as Observable<string[]>;
+    }
 
 	change(piece: Piece): Observable<any> {
 		return this.http.post(url+"Change", piece) as Observable<any>;

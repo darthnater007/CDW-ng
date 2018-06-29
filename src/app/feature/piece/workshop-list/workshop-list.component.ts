@@ -17,6 +17,8 @@ export class WorkshopListComponent implements OnInit {
 	title : string =  'Workshop';
 	// sortBy: string = "Id"; (no pipe yet)
     
+    LocalTime: Date;
+    
     file : File = null;
 	
 constructor(private pieceSvc: PieceService) { }
@@ -24,9 +26,6 @@ constructor(private pieceSvc: PieceService) { }
   ngOnInit() {
 		this.pieceSvc.listWorkshop().subscribe(pieces => {
 			this.pieces = pieces;
-            for (let piece of pieces){
-                console.log(piece);
-            }
 		});
 	  
 //	  if(this.sysSvc.data.piece.loggedIn){

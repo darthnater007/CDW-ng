@@ -16,14 +16,14 @@
            <div>
                <h2> {{ piece.Title }}</h2>
                <h5>By:  {{ piece.User.FirstName }} {{ piece.User.LastName }}</h5>
-               <h6>Submitted on:  {{ piece.Submitted }} </h6>
+               <h6>Submitted on:  {{ piece.Submitted | date: "medium" }} </h6>
            </div>
            <div>
                <p> Genre:  {{ piece.Genre }}</p>
                <p> Description:  {{ piece.Description }}</p>
            </div>
            <div>
-               <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Download <q>{{ piece.Title }}</q></button>
+               <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
            </div>
            <!-- Admin tools-- once piece service is in place this should only be visible to site Admins-->
            <div>
@@ -32,7 +32,7 @@
            </div>
            <!-- My Information-- allow signed in user to work with their own pieces -->
            <h3>My Information</h3>
-           <button routerLink='/edit/writer/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
+           <button routerLink='/edit/piece/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
            <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
        </div>  
     </div>
