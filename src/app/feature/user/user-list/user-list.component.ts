@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../model/user';
 
 import { UserService } from '../../../service/user.service';
+import { LoginService } from '../../../service/login.service';
 
 import { SortPipe } from '../../../pipe/sort.pipe';
 
@@ -13,25 +14,23 @@ import { SortPipe } from '../../../pipe/sort.pipe';
 })
 export class UserListComponent implements OnInit {
 	users : User[];
-	// user : User; (no sys service yet)
+	loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
 	
 	title : string =  'Our Writers';
 	 sortBy: string = "LastName";
 	
-constructor(private userSvc: UserService) { }
+constructor(private userSvc: UserService, private loginSvc: LoginService) { }
 
   ngOnInit() {
 		this.userSvc.list().subscribe(users => {
 			this.users = users;
 		});
+      
+      if(this.loginSvc.data.user.loggedIn){
+			this.loggedIn = this.loginSvc.data.user.instance;
+		}
 
   }
-	  
-//	  if(this.sysSvc.data.user.loggedIn){
-//			this.user = this.sysSvc.data.user.instance;
-//		}else{
-//			console.error("User not logged in.");
-//		}  (No Sys Service yet)
 
 remove(userId: number): void {
     this.userSvc.remove(userId).subscribe(res => {

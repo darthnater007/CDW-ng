@@ -19,25 +19,30 @@
             <li class="nav-item"  *ngFor = 'let nav of navItems' title = '{{ nav.tooltip }}' ><a class="nav-link"  routerLink = '{{ nav.href }}'> {{ nav.display }} </a></li>
         </ul>
     </div>
-    <div class="btn-group">
-            <button type="button" class="btn btn-dark dropdown-toggle nav-link mr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log In</button>
-            <div class="dropdown-menu bg-dark">
+    <div class="btn-group" *ngIf="loggedIn.Id == 0">
+            <button type="button" class="btn btn-dark dropdown-toggle nav-link mr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log In<small *ngIf="loginError !=''" class="text-danger"><br>Try again.</small></button>
+            <div class="dropdown-menu bg-dark" *ngIf="loginToken">
                 <!-- set up to populate a login object -->
                 <form class="px-3">
                     <div class="form-group">
                         <label for="LoginUserName" class="navbar-text">User Name</label>
-                        <input type="email" class="form-control" id="LoginUserName" placeholder="User Name">
+                        <input type="text" class="form-control" [(ngModel)]='loginToken.UserName' name="LoginUserName" id="LoginUserName" placeholder="User Name">
                     </div>
                     <div class="form-group">
                         <label for="LoginPassword" class="navbar-text">Password</label>
-                        <input type="password" class="form-control" id="LoginPassword" placeholder="Password">
+                        <input type="password" class="form-control"  [(ngModel)]='loginToken.Password' name="LoginPassword" id="LoginPassword" placeholder="Password">
                     </div>
                     <!-- login method will go on click here -->
-                    <button type="submit" class="btn btn-primary btn-sm">Sign in<i class="fas fa-sign-in-alt"></i></button>
+                    <button class="btn btn-primary btn-sm" (click)="authenticate()">Sign in<i class="fas fa-sign-in-alt"></i></button>
+                    <h6><small class="text-danger">{{ loginError }}</small></h6>
                 </form>
                 <div class="dropdown-divider"></div>
                     <h6 class="navbar-text mx-3">Not a member?</h6>
                     <button type="submit" class="btn btn-primary btn-sm mx-3" routerLink="create/writer">Sign up<i class="fas fa-user-plus"></i></button>
             </div>
+        </div>
+        <div *ngIf="loggedIn.Id != 0">
+            <p class="text-white"> <small> Logged in as: {{ loggedIn.UserName }} </small></p>
+            <button class="btn btn-dark btn-small" (click)="logOut()">Log Out</button>
         </div>
 </nav>

@@ -3,7 +3,7 @@
 <h4 *ngIf='user'>This page will allow you to edit the details for {{ user.FirstName }} {{ user.LastName }}.  <br>If you are here by error, please go back to the list of our writers.</h4>
 <h5><br>Make changes to the form below</h5>
 <h4 *ngIf='!user'><br><br>Loading...</h4>
-<form class="container" *ngIf='user'>
+<form class="container" *ngIf='user && loggedIn.UserName == user.UserName || loggedIn.Admin == true'>
     <div class="form-group">
             <label>
                 UserName:
@@ -92,7 +92,7 @@
         <h6><small> <sup>*</sup> Phone numbers will only be shared with other members. </small></h6>
     </div>
     <!-- this should only be visible to site admins eventually -->
-    <div class="form-check" style="margin: 25px 0px;">
+    <div class="form-check" *ngIf="loggedIn.Admin == true" style="margin: 25px 0px;">
         <label class="form-check-label">
             Admin:
         </label>
@@ -110,3 +110,4 @@
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Update</span>
     </div>
 </form>
+<h2 class="text-danger" *ngIf='user && loggedIn.UserName != user.UserName && loggedIn.Admin != true'>You are not signed in!  <br>Please sign in to access this feature.</h2>

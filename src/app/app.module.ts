@@ -29,7 +29,8 @@ import { PublicationListComponent } from './feature/piece/publication-list/publi
 import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-list.component';
 
 
-// services
+// services and pipes
+import { LoginService } from './service/login.service';
 import { UserService } from './service/user.service';
 import { EventService } from './service/event.service';
 import { PieceService } from './service/piece.service';
@@ -73,6 +74,7 @@ import { SortdownPipe } from './pipe/sortdown.pipe';
     FileUploadModule
   ],
   providers: [
+      LoginService,
       UserService,
       EventService,
       PieceService
