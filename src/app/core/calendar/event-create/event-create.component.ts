@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Event } from '../../../model/event';
+import { User } from '../../../model/user';
+
 import { EventService } from '../../../service/event.service';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-event-create',
@@ -10,10 +14,11 @@ import { EventService } from '../../../service/event.service';
 })
 export class EventCreateComponent implements OnInit {
 	title: string = "Create An Event";
-    confirmPassword: string = '';
-    confirmEmail: string = '';
 	resp: any;
+    
 	event: Event = new Event(0, '', '', '', '', null, null);
+    loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
+    
 	
 create() {
 	console.log('create a event...');
@@ -24,9 +29,12 @@ create() {
 		});
 }
 
-constructor(private eventSvc: EventService, private router: Router) { }
+constructor(private eventSvc: EventService, private router: Router, private loginSvc: LoginService) { }
 
   ngOnInit() {
+      if(this.loginSvc.data.user.loggedIn){
+        this.loggedIn = this.loginSvc.data.user.instance;
+    } 
   }
 
 }

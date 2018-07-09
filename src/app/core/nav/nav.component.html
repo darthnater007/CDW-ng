@@ -20,6 +20,7 @@
         </ul>
     </div>
     <div class="btn-group" *ngIf="loggedIn.Id == 0">
+                   <p class="float-left text-white"> <small> You are not logged in!</small></p>
             <button type="button" class="btn btn-dark dropdown-toggle nav-link mr-5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log In<small *ngIf="loginError !=''" class="text-danger"><br>Try again.</small></button>
             <div class="dropdown-menu bg-dark" *ngIf="loginToken">
                 <!-- set up to populate a login object -->
@@ -42,7 +43,7 @@
             </div>
         </div>
         <div *ngIf="loggedIn.Id != 0">
-            <p class="text-white"> <small> Logged in as: {{ loggedIn.UserName }} </small></p>
-            <button class="btn btn-dark btn-small" (click)="logOut()">Log Out</button>
+            <p class=" float-left text-white"> <small> Logged in as: {{ loggedIn.UserName }} </small></p>
+            <button class=" btn btn-dark btn-small" (click)="logOut()">Log Out</button>
         </div>
 </nav>

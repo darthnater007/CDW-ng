@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Event } from '../../model/event';
+import { User } from '../../model/user';
+
 
 import { EventService } from '../../service/event.service';
-
+import { LoginService } from '../../service/login.service';
 import { SortdownPipe } from '../../pipe/sortdown.pipe';
 
 @Component({
@@ -16,19 +18,18 @@ export class CalendarComponent implements OnInit {
 	
 	title : string =  'Calendar of Upcoming Events';
 	sortBy: string = "EventStart";
+    
+    loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
 	
-constructor(private eventSvc: EventService) { }
+constructor(private eventSvc: EventService, private loginSvc: LoginService) { }
 
   ngOnInit() {
+      if(this.loginSvc.data.user.loggedIn){
+          this.loggedIn = this.loginSvc.data.user.instance;
+    } 
 		this.eventSvc.list().subscribe(events => {
 			this.events = events;
 		});
-	  
-//	  if(this.sysSvc.data.event.loggedIn){
-//			this.event = this.sysSvc.data.event.instance;
-//		}else{
-//			console.error("Event not logged in.");
-//		}  (No Sys Service yet)
   }
 
 remove(eventId: number): void {

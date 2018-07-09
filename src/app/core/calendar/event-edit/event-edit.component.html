@@ -5,7 +5,7 @@
 <h4 *ngIf='!event'><br><br>Loading...</h4>
 
 
-<form class="container" *ngIf='event'>
+<form class="container" *ngIf='event && loggedIn.Admin == true'>
     <div class="form-group">
         <label>
             Hosted By:
@@ -67,3 +67,4 @@
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
     </div>
 </form>
+<h2 class="text-danger" *ngIf="loggedIn.Admin != true">You are not signed in!  <br>Please sign in to access this feature.</h2>
