@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { PieceService } from '../../../service/piece.service';
-
 import { Piece } from '../../../model/piece';
+import { User } from '../../../model/user';
+
+import { PieceService } from '../../../service/piece.service';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-piece-edit',
@@ -19,11 +21,16 @@ export class PieceEditComponent implements OnInit {
 	resp: string[];
 	
 	piece: Piece = new Piece(0, null, '', '', '', '', null, false);
+    loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
 	
 
-constructor(private pieceSvc: PieceService, private router: Router, private route: ActivatedRoute) { }
+constructor(private pieceSvc: PieceService, private loginSvc: LoginService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+      if(this.loginSvc.data.user.loggedIn){
+          this.loggedIn = this.loginSvc.data.user.instance;
+      } 
+      
 	this.route.params.subscribe(parms => this.id = parms['id']);
 	this.pieceSvc.get(this.id).subscribe(pieces => {
 		this.piece = pieces.length > 0 ? pieces[0] : null;

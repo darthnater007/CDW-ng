@@ -3,10 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {FileUploadModule} from 'primeng/primeng';
 
 import { Piece } from '../../../model/piece';
-import { User } from '../../../model/user'
+import { User } from '../../../model/user';
 
 import { PieceService } from '../../../service/piece.service';
 import { UserService } from '../../../service/user.service';
+import { LoginService } from '../../../service/login.service';
 
 @Component({
   selector: 'app-piece-create',
@@ -21,10 +22,10 @@ export class PieceCreateComponent implements OnInit {
     
     file: File;
 	resp: any;
-	piece: Piece = new Piece(0, null, '', '', '', '', null, false);
     
-    // this will be unneccessary for workshop (still needed for publications) after login function is working
+	piece: Piece = new Piece(0, null, '', '', '', '', null, false);
     users: User[];
+    loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
     
     getFileName(files: FileList){
         this.file = files.item(0);
@@ -54,14 +55,19 @@ export class PieceCreateComponent implements OnInit {
 
     }
 
-constructor(private pieceSvc: PieceService, private userSvc: UserService, private router: Router, private route: ActivatedRoute) { }
+constructor(private pieceSvc: PieceService, private userSvc: UserService, private loginSvc: LoginService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+      if(this.loginSvc.data.user.loggedIn){
+          this.loggedIn = this.loginSvc.data.user.instance;
+      } 
+      
       this.route.params.subscribe(parms => this.type = parms['type']);
       if (this.type == 'publication'){
           this.piece.Publication = true;
       }else{
           this.piece.Publication = false;
+          this.piece.User = this.loggedIn;
       }
       
       this.userSvc.list().subscribe(users => {

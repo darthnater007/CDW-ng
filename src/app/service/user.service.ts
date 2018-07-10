@@ -19,7 +19,6 @@ export class UserService {
 	}
 
 	create(user: User): Observable<any>{
-		console.log("usersvc.create...");
 		return this.http.post(url + "Add", user) as Observable<any>;
 	}
 

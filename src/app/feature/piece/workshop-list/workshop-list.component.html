@@ -1,6 +1,7 @@
 <h1> {{ title }}</h1>
+<h4> A list of pieces to be workshopped at our bi-weekly meetings.  Pieces are organized so that the oldest submitted piece is on top.</h4>
 
-<a routerLink="/create/piece/workshop" class="btn btn-primary">
+<a *ngIf="loggedIn.Id != 0" routerLink="/create/piece/workshop" class="btn btn-primary">
     <span>
         Add A Piece <i class="fas fa-pen-square"></i>
     </span>
@@ -10,7 +11,7 @@
 <h4 *ngIf="!pieces">Loading...</h4>
 
 
-<div class="container-flex" *ngIf="pieces">
+<div class="container-flex" *ngIf="pieces && loggedIn.Id != 0">
     <div *ngFor = 'let piece of pieces | sortdown: sortBy' class="grid-container">
        <div class= "piece-card" style = "background: grey; margin: 25px;">
            <div>
@@ -26,14 +27,17 @@
                <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
            </div>
            <!-- Admin tools-- once piece service is in place this should only be visible to site Admins-->
-           <div>
+           <div *ngIf="loggedIn.Admin == true">
                <h3>Admin Tools</h3>
                <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database!  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
            </div>
            <!-- My Information-- allow signed in user to work with their own pieces -->
-           <h3>My Information</h3>
-           <button routerLink='/edit/piece/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
-           <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
+           <div *ngIf="loggedIn.Id == piece.User.Id">
+               <h3>My Information</h3>
+               <button routerLink='/edit/piece/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
+               <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
+           </div>
        </div>  
     </div>
 </div>
+<h2 *ngIf="loggedIn.Id == 0">You must be logged in to access the Workshop Page.  Sign In or Create a New Account.</h2>

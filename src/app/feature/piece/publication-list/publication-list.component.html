@@ -1,6 +1,6 @@
 <h1> {{ title }}</h1>
-<!-- if the user is admin, this next bit should be visible -->
-<div>
+<h4>Here's some things we've written.  For buying information, please navigate to (WHATEVER ONLINE SHOPPING SITE WE HAVE)</h4>
+<div *ngIf="loggedIn.Admin == true">
    <h3 class="text-danger">Admins Only</h3>
    <h5> If you are not a site admin and you see this, please be cool and leave</h5>
     <a routerLink="/create/piece/publication" class="btn btn-primary">
@@ -29,15 +29,11 @@
            <div>
                <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
            </div>
-           <!-- Admin tools-- once piece service is in place this should only be visible to site Admins-->
-           <div>
-               <h3>Admin Tools</h3>
-               <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database!  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
-           </div>
-           <!-- My Information-- allow signed in user to work with their own pieces -->
-           <h3>My Information</h3>
+           <div *ngIf="loggedIn.Admin == true">
+           <h3>Admin Tools</h3>
            <button routerLink='/edit/piece/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
            <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
+           </div>
        </div>  
     </div>
 </div>

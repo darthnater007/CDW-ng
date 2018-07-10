@@ -7,7 +7,7 @@
 <h5>Please fill out and submit the form below to submit a piece.</h5>
 <h4 *ngIf='!piece'><br><br>Loading...</h4>
 
-<form class='container' *ngIf=piece method="post"  enctype="multipart/form-data">
+<form class='container' *ngIf='piece && loggedIn.Admin == true || loggedIn.Id != 0' method="post"  enctype="multipart/form-data">
     <label>
         Select a File to Upload:
         <span *ngIf='piece.FileName == "" ' class="text-danger"><sup>*</sup>Required</span>
@@ -18,9 +18,8 @@
 </form>
 
 <!-- this form should only be visible after a successful file upload -->
-<form class="container" *ngIf='piece'>
-   <!-- user dropdown for Pub, once login feature works this should choose logged in user automatically on workshop pieces-->
-   <div class="form-group" *ngIf='users'>
+<form class="container" *ngIf='piece && loggedIn.Admin == true || loggedIn.Id != 0'>
+   <div class="form-group" *ngIf='users && piece.Publication == true'>
        <label>
            Writer:
            <span *ngIf='piece.User == null ' class="text-danger"><sup>*</sup>Required</span>
@@ -29,6 +28,13 @@
             <option value="null" disabled selected hidden>Select Writer</option>
             <option class="" *ngFor = 'let user of users' [ngValue]="user">{{ user.FirstName }} {{ user.LastName }}</option>
         </select>
+   </div>
+   <div class="form-group" *ngIf='piece.Publication == false'>
+       <label>
+           Writer:
+           <span *ngIf='piece.User == null ' class="text-danger"><sup>*</sup>Required</span>
+       </label>
+        <input class="form-control" type="text" value="{{piece.User.FirstName}} {{piece.User.LastName}}" disabled>
    </div>
     <div class="form-group">
             <label>
@@ -65,3 +71,4 @@
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
     </div>
 </form>
+<h2 *ngIf='piece && loggedIn.Admin == false || loggedIn.Id == 0'>You must Be Logged In To Access This Feature!</h2>

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {saveAs as importedSaveAs} from "file-saver";
 
 import { Piece } from '../../../model/piece';
+import { User } from '../../../model/user';
 
 import { PieceService } from '../../../service/piece.service';
+import { LoginService } from '../../../service/login.service';
 
 import { SortPipe } from '../../../pipe/sort.pipe';
 
@@ -14,24 +16,22 @@ import { SortPipe } from '../../../pipe/sort.pipe';
 })
 export class PublicationListComponent implements OnInit {
 	pieces : Piece[];
-	// piece : Piece; (no sys service yet)
 	
 	title : string =  'Publications';
 	sortBy: string = "Submitted";
+    
+    loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
 	
-constructor(private pieceSvc: PieceService) { }
+constructor(private pieceSvc: PieceService, private loginSvc: LoginService) { }
 
   ngOnInit() {
 		this.pieceSvc.listPublications().subscribe(pieces => {
 			this.pieces = pieces;
-            console.log("Pieces list =" + pieces);
 		});
 	  
-//	  if(this.sysSvc.data.piece.loggedIn){
-//			this.piece = this.sysSvc.data.piece.instance;
-//		}else{
-//			console.error("User not logged in.");
-//		}  (No Sys Service yet)
+      if(this.loginSvc.data.user.loggedIn){
+          this.loggedIn = this.loginSvc.data.user.instance;
+      } 
   }
 
 remove(pieceId: number): void {

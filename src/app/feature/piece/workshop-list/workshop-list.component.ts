@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {saveAs as importedSaveAs} from "file-saver";
 
 import { Piece } from '../../../model/piece';
+import { User } from '../../../model/user';
 
 import { PieceService } from '../../../service/piece.service';
+import { LoginService } from '../../../service/login.service';
 
 import { SortdownPipe } from '../../../pipe/sortdown.pipe';
 
@@ -13,8 +15,6 @@ import { SortdownPipe } from '../../../pipe/sortdown.pipe';
   styleUrls: ['./workshop-list.component.css']
 })
 export class WorkshopListComponent implements OnInit {
-	pieces : Piece[];
-	// piece : Piece; (no sys service yet)
 	
 	title : string =  'Workshop';
     sortBy: string = "Submitted";
@@ -22,10 +22,17 @@ export class WorkshopListComponent implements OnInit {
     LocalTime: Date;
     
     file : File = null;
+    
+    pieces : Piece[];
+    loggedIn : User = new User(0, '', '', '', '', '', '', '', '', false);
 	
-constructor(private pieceSvc: PieceService) { }
+constructor(private pieceSvc: PieceService, private loginSvc: LoginService) { }
 
   ngOnInit() {
+      
+      if(this.loginSvc.data.user.loggedIn){
+          this.loggedIn = this.loginSvc.data.user.instance;
+      } 
 		this.pieceSvc.listWorkshop().subscribe(pieces => {
 			this.pieces = pieces;
 		});
