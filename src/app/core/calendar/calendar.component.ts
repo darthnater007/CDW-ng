@@ -6,6 +6,7 @@ import { User } from '../../model/user';
 
 import { EventService } from '../../service/event.service';
 import { LoginService } from '../../service/login.service';
+
 import { SortdownPipe } from '../../pipe/sortdown.pipe';
 
 @Component({

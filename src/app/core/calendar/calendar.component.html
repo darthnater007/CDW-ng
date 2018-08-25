@@ -26,7 +26,6 @@
                <p> Starts: {{ event.EventStart | date : "fullDate" }}  At {{ event.EventStart | date : "shortTime" }}</p>
                <p> Ends:  <span *ngIf='event.EventEnd == null'>?</span> <span *ngIf='event.EventEnd != null'>{{ event.EventEnd | date : "fullDate" }} At {{ event.EventEnd | date : "shortTime" }}</span></p>
            </div>
-           <!-- Admin tools-- once user service is in place this should only be visible to site Admins-->
            <div *ngIf="loggedIn.Admin == true">
                <h3>Admin Tools</h3>
                <button routerLink='/edit/event/{{ event.Id }}' class="btn btn-info btn-sm" title="Edit this event"><i class="far fa-edit"></i>Edit</button>
