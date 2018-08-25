@@ -1,10 +1,10 @@
 <a *ngIf='piece.Publication == true' routerLink='/publications'><-Back</a>
 <a *ngIf='piece.Publication == false' routerLink='/workshop'><-Back</a>
-<h1 *ngIf='piece.Publication == true' > {{ titlePub }}</h1>
-<h3 *ngIf='piece.Publication == true' class="text-danger">This Page is for Admins Only!</h3>
-<h1 *ngIf='piece.Publication == false' > {{ titleWork }}</h1>
-<h4 *ngIf='piece.Publication == false'>Check out the Calendar page for workshops!</h4>
-<h5>Please fill out and submit the form below to submit a piece.</h5>
+<h1 *ngIf='piece.Publication == true' class="headPad typeFont"> {{ titlePub }}</h1>
+<h1 *ngIf='piece.Publication == false' class="headPad typeFont"> {{ titleWork }}</h1>
+<h4 *ngIf='piece.Publication == false' class="regPad">Check out the Calendar page for workshops!</h4>
+<h5 class="regPad">Please fill out and submit the form below to submit a piece.</h5>
+<h5 *ngIf='piece.Publication == true' class="card cardColor"><span class="text-danger">***</span>This Page is for Admins Only!</h5>
 <h4 *ngIf='!piece'><br><br>Loading...</h4>
 
 <form class='container' *ngIf='piece && loggedIn.Admin == true || loggedIn.Id != 0' method="post"  enctype="multipart/form-data">
@@ -17,7 +17,6 @@
     <h6><small class='text-muted'>Only PDF files will be accepted.  In your text editor (e.g. Microsoft Word) go to File->Save As, and make sure to change the file type to "PDF" in the resulting dialog box.  Then hit save.</small></h6>
 </form>
 
-<!-- this form should only be visible after a successful file upload -->
 <form class="container" *ngIf='piece && loggedIn.Admin == true || loggedIn.Id != 0'>
    <div class="form-group" *ngIf='users && piece.Publication == true'>
        <label>

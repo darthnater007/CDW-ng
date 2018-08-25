@@ -1,8 +1,8 @@
-<h1> {{ title }}</h1>
-<h4>Here's some things we've written.  For buying information, please navigate to (WHATEVER ONLINE SHOPPING SITE WE HAVE)</h4>
-<div *ngIf="loggedIn.Admin == true">
+<h1 class="headPad typeFont"> {{ title }}</h1>
+<h4 class="regPad">Here's some things we've written.  For buying information, please navigate to (WHATEVER ONLINE SHOPPING SITE WE HAVE)</h4>
+<div *ngIf="loggedIn.Admin == true" class="card cardColor mx-5">
    <h3 class="text-danger">Admins Only</h3>
-   <h5> If you are not a site admin and you see this, please be cool and leave</h5>
+   <h5> If you are not a site admin and you see this box, please be cool and leave</h5>
     <a routerLink="/create/piece/publication" class="btn btn-primary">
         <span>
             Add A Piece <i class="fas fa-pen-square"></i>
@@ -15,21 +15,21 @@
 
 
 <div class="container-flex" *ngIf="pieces">
-    <div *ngFor = 'let piece of pieces | sort: sortBy' class="grid-container">
-       <div class= "piece-card" style = "background: grey; margin: 25px;">
-           <div>
-               <h2> {{ piece.Title }}</h2>
+    <div *ngFor = 'let piece of pieces | sort: sortBy' class="card cardColor m-5">
+       <div class= "piece-card">
+           <div class="regPad">
+               <h2 class="headFont"> {{ piece.Title }}</h2>
                <h5>By:  {{ piece.User.FirstName }} {{ piece.User.LastName }}</h5>
                <h6>On the site since:  {{ piece.Submitted | date: "mediumDate"}} </h6>
            </div>
-           <div>
+           <div class="regPad">
                <p> Genre:  {{ piece.Genre }}</p>
                <p> Description:  {{ piece.Description }}</p>
            </div>
-           <div>
-               <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
+           <div class="regPad">
+               <button class="btn btn-small btn-info" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
            </div>
-           <div *ngIf="loggedIn.Admin == true">
+           <div *ngIf="loggedIn.Admin == true" class="bg-dark text-white">
            <h3>Admin Tools</h3>
            <button routerLink='/edit/piece/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
            <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>

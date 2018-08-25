@@ -1,9 +1,9 @@
 <a *ngIf='piece.Publication == true' routerLink='/publications'><-Back</a>
 <a *ngIf='piece.Publication == false' routerLink='/workshop'><-Back</a>
-<h1> {{ title }}</h1>
-<h5>Please change fields below and submit the form below to edit this piece.</h5>
+<h1 class="headPad typeFont"> {{ title }}</h1>
+<h5 class="regPad">Please change fields below and submit the form below to edit this piece.</h5>
 <h4 *ngIf='!piece'><br><br>Loading...</h4>
-<div *ngIf="loggedIn.Admin == true || loggedIn == piece.User">
+<div *ngIf="loggedIn.Admin == true || loggedIn == piece.User" class="regPad">
     <label>Current File:  {{ piece.FileName }}</label>
     <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#newFile">Choose a New File</button>
 <div class="collapse" id="newFile">
@@ -63,5 +63,4 @@
         class="btn btn-lg btn-dark" >Update</button>
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
     </div>
-</form>
-<h2 *ngIf="loggedIn.Admin == false || loggedIn != piece.User">You must Be Logged In To Access This Feature!</h2> 
+</form> 

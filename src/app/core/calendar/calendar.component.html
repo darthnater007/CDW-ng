@@ -1,32 +1,35 @@
-<h1> {{ title }}</h1>
-<h4>Here's what we're up to!</h4>
+<h1 class="headPad typeFont"> {{ title }}</h1>
+<h4 class="regPad">Here's what we're up to!</h4>
    
-
+<div *ngIf="loggedIn.Admin == true" class="card cardColor mx-5">
+<h3 class="text-danger">Admins Only</h3>
+   <h5> If you are not a site admin and you see this box, please be cool and leave</h5>
 <a *ngIf="loggedIn.Admin == true" routerLink="/create/event" class="btn btn-primary">
     <span>
         Create an Event <i class="far fa-calendar-alt"></i>
     </span>
 </a>
+</div>
  
 
 <h4 *ngIf="!events">Loading...</h4>
 
 
 <div class="container-flex" *ngIf="events">
-    <div *ngFor = 'let event of events |sortdown: sortBy' class="grid-container">
-       <div class= "event-card" style = "background: grey; margin: 25px;">
-           <div>
-               <h2> {{ event.EventName }}</h2>
+    <div *ngFor = 'let event of events |sortdown: sortBy' class="card cardColor m-5">
+       <div class= "event-card">
+           <div class="regPad">
+               <h2 class="headFont"> {{ event.EventName }}</h2>
            </div>
-           <div>
+           <div class="regPad">
                <p>Description: {{event.Description }}</p>
            </div>
-           <div>
+           <div class="regPad">
               <p> Location: {{ event.Location }}</p>
                <p> Starts: {{ event.EventStart | date : "fullDate" }}  At {{ event.EventStart | date : "shortTime" }}</p>
                <p> Ends:  <span *ngIf='event.EventEnd == null'>?</span> <span *ngIf='event.EventEnd != null'>{{ event.EventEnd | date : "fullDate" }} At {{ event.EventEnd | date : "shortTime" }}</span></p>
            </div>
-           <div *ngIf="loggedIn.Admin == true">
+           <div *ngIf="loggedIn.Admin == true" class="bg-dark text-white">
                <h3>Admin Tools</h3>
                <button routerLink='/edit/event/{{ event.Id }}' class="btn btn-info btn-sm" title="Edit this event"><i class="far fa-edit"></i>Edit</button>
                <button (click)='remove(event.Id)' class='btn btn-danger btn-sm' title='Remove this event'><i class="far fa-minus-square"></i>Remove</button>

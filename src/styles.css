@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+
+
+body {
+    background-color: #E0E0E0;
+}
 
 .jumbotron { 
     color: black;
@@ -8,10 +12,38 @@
 
 .jumbotron h1 {
     padding-left: 15%;
-    text-shadow: 1px 1px 3px beige, -1px -1px  3px beige;
+    text-shadow: 1px 1px 3px whites, -1px -1px  3px white;
 }
 
 .jumbotron h4 {
     padding-left: 10%;
 }
 
+.typeFont {
+    font-family: 'Special Elite', monospace;
+}
+
+.headFont{
+    font-family: 'Frank Ruhl Libre', serif;
+}
+
+.headPad {
+    padding-top: 3%;
+    padding-left: 3%;
+    /* there might be a better way to underline headings */
+    text-decoration: underline;
+}
+
+.regPad{
+    padding-left: 5%; 
+}
+
+.dropCap{
+    font-size: 150%;
+    font-family: 'Frank Ruhl Libre', serif;
+
+}
+
+.cardColor {
+    background-color: #ACACAC;
+}

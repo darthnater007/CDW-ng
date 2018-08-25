@@ -1,7 +1,7 @@
 <a routerLink='/ourwriters'><-Back</a>
-<h1> {{ title }}</h1>
-<h4 *ngIf='user'>This page will allow you to edit the details for {{ user.FirstName }} {{ user.LastName }}.  <br>If you are here by error, please go back to the list of our writers.</h4>
-<h5><br>Make changes to the form below</h5>
+<h1 class="headPad typeFont"> {{ title }}</h1>
+<h4 class="regPad" *ngIf='user'>This page will allow you to edit the details for {{ user.FirstName }} {{ user.LastName }}.  <br>If you are here by error, please go back to the list of our writers.</h4>
+<h5 class="regPad"><br>Make changes to the form below</h5>
 <h4 *ngIf='!user'><br><br>Loading...</h4>
 <form class="container" *ngIf='user && loggedIn.UserName == user.UserName || loggedIn.Admin == true'>
     <div class="form-group">

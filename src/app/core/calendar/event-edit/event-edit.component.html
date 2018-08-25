@@ -1,7 +1,9 @@
 <a routerLink='/calendar'><-Back</a>
-<h1> {{ title }} </h1>
-<h4 class="text-danger">This is a page for Admins Only</h4>
-<h5>If you are not a site admin, please be cool and leave.</h5>
+<h1 class="headPad typeFont"> {{ title }} </h1>
+<div class="card cardColor m-5">
+    <h4 class="text-danger">This is a page for Admins Only</h4>
+    <h5>If you are not a site admin, please be cool and leave.</h5>
+</div>
 <h4 *ngIf='!event'><br><br>Loading...</h4>
 
 
@@ -67,4 +69,4 @@
         <span class="text-danger"> <sup>*</sup>All Required Fields Must Be Entered In Order To Submit</span>
     </div>
 </form>
-<h2 class="text-danger" *ngIf="loggedIn.Admin != true">You are not signed in!  <br>Please sign in to access this feature.</h2>
+<h5 *ngIf="loggedIn.Admin != true" class="regPad"><span class="text-danger">***</span>You are not signed in as an Admin!  Please sign in to an admin account to access this feature.</h5>

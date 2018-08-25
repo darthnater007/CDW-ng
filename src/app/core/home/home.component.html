@@ -1,49 +1,53 @@
-<h1> {{ title }}</h1>
-<h4>Welcome to the Cincinnati DIY Writers Page</h4>
+<h1 class="typeFont headPad"> {{ title }}</h1>
+<h4 class="regPad">Welcome to the Cincinnati DIY Writers Page</h4>
 
 <div>
-    <h2>Our Mission</h2>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dolorem neque repellat id, tempore, ad excepturi qui nisi, et quidem provident modi odio quibusdam. Fugiat deleniti deserunt explicabo hic temporibus.
+    <h2 class="headFont headPad">Our Mission</h2>
+    <p class="regPad">
+        <span class="dropCap">L</span>orem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus dolorem neque repellat id, tempore, ad excepturi qui nisi, et quidem provident modi odio quibusdam. Fugiat deleniti deserunt explicabo hic temporibus.
     </p>
 </div>
 
 <div>
-    <h2>Who We Are and What We Do</h2>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, laborum quasi, dolore obcaecati tenetur, amet aliquam dolor assumenda qui pariatur corporis molestias, velit est accusamus voluptates sint unde facilis sunt.  For more info about our group, click <a routerLink='/about'>here</a>!
+    <h2 class="headFont headPad">Who We Are and What We Do</h2>
+    <p class="regPad">
+        <span class="dropCap">L</span>orem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem, laborum quasi, dolore obcaecati tenetur, amet aliquam dolor assumenda qui pariatur corporis molestias, velit est accusamus voluptates sint unde facilis sunt.  For more info about our group, click <a routerLink='/about'>here</a>!
     </p>
 </div>
 
-<div *ngIf="newestPublication.Id != 0">
-    <h2>Our Last Publication</h2>
-    <div>
-        <h2> {{ newestPublication.Title }}</h2>
-        <h5>By:  {{ newestPublication.User.FirstName }} {{ newestPublication.User.LastName }}</h5>
-        <h6>On the site since:  {{ newestPublication.Submitted | date: "mediumDate"}} </h6>
+<div *ngIf="newestPublication && newestPublication.Id != 0">
+    <h2 class="headFont headPad">Our Last Publication</h2>
+    <div class="card cardColor mx-5">
+        <div class="regPad">
+            <h3 class="headFont"> {{ newestPublication.Title }}</h3>
+            <h5>By:  {{ newestPublication.User.FirstName }} {{ newestPublication.User.LastName }}</h5>
+            <h6>On the site since:  {{ newestPublication.Submitted | date: "mediumDate"}} </h6>
+        </div>
+        <div class="regPad">
+            <p> Genre:  {{ newestPublication.Genre }}</p>
+            <p> Description:  {{ newestPublication.Description }}</p>
+        </div>
+        <div class="regPad">
+            <button class="btn btn-small btn-info" (click)="view(newestPublication.FileName)">Click Here To Read <q>{{ newestPublication.Title }}</q></button>
+        </div>
+        <p class="regPad"> To see all of our publications, click <a routerLink='/publications'>here</a>!</p>
     </div>
-    <div>
-        <p> Genre:  {{ newestPublication.Genre }}</p>
-        <p> Description:  {{ newestPublication.Description }}</p>
-    </div>
-    <div>
-        <button class="btn btn-small btn-secondary" (click)="view(newestPublication.FileName)">Click Here To Read <q>{{ newestPublication.Title }}</q></button>
-    </div>
-    <p> To see all of our publications, click <a routerLink='/publications'>here</a>!</p>
 </div>
 
-<div *ngIf="nextEvent.Id != 0">
-    <h2>Our Next Event</h2>
-    <div>
-        <h2> {{ nextEvent.EventName }}</h2>
+<div *ngIf="nextEvent && nextEvent.Id != 0">
+    <h2 class="headFont headPad">Our Next Event</h2>
+    <div class="card cardColor mx-5">
+        <div class="regPad">
+            <h3 class="headFont"> {{ nextEvent.EventName }}</h3>
+        </div>
+        <div class="regPad">
+            <p>Description: {{nextEvent.Description }}</p>
+        </div>
+        <div class="regPad">
+            <p> Location: {{ nextEvent.Location }}</p>
+            <p> Starts: {{ nextEvent.EventStart | date : "fullDate" }}  At {{ nextEvent.EventStart | date : "shortTime" }}</p>
+            <p> Ends:  <span *ngIf='nextEvent.EventEnd == null'>?</span> <span *ngIf='nextEvent.EventEnd != null'>{{ nextEvent.EventEnd | date : "fullDate" }} At {{ nextEvent.EventEnd | date : "shortTime" }}</span></p>
+        </div>
+        <p class="regPad"> For a full list of events, click <a routerLink='/calendar'>here</a>!</p>
     </div>
-    <div>
-        <p>Description: {{nextEvent.Description }}</p>
-    </div>
-    <div>
-        <p> Location: {{ nextEvent.Location }}</p>
-        <p> Starts: {{ nextEvent.EventStart | date : "fullDate" }}  At {{ nextEvent.EventStart | date : "shortTime" }}</p>
-        <p> Ends:  <span *ngIf='nextEvent.EventEnd == null'>?</span> <span *ngIf='nextEvent.EventEnd != null'>{{ nextEvent.EventEnd | date : "fullDate" }} At {{ nextEvent.EventEnd | date : "shortTime" }}</span></p>
-    </div>
-    <p> For a full list of events, click <a routerLink='/calendar'>here</a>!</p>
 </div>

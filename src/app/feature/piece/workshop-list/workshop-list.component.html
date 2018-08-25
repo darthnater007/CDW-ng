@@ -1,38 +1,40 @@
-<h1> {{ title }}</h1>
-<h4> A list of pieces to be workshopped at our bi-weekly meetings.  Pieces are organized so that the oldest submitted piece is on top.</h4>
+<h1 class="headPad typeFont"> {{ title }}</h1>
+<h4 class="regPad"> A list of pieces to be workshopped at our bi-weekly meetings.  Pieces are organized so that the oldest submitted piece is on top.</h4>
 
-<a *ngIf="loggedIn.Id != 0" routerLink="/create/piece/workshop" class="btn btn-primary">
-    <span>
-        Add A Piece <i class="fas fa-pen-square"></i>
-    </span>
-</a>
+<div class="card cardColor mx-5">
+    <a *ngIf="loggedIn.Id != 0" routerLink="/create/piece/workshop" class="btn btn-primary">
+        <span>
+            Add A Piece <i class="fas fa-pen-square"></i>
+        </span>
+    </a>
+</div>
 
 
 <h4 *ngIf="!pieces">Loading...</h4>
 
 
 <div class="container-flex" *ngIf="pieces && loggedIn.Id != 0">
-    <div *ngFor = 'let piece of pieces | sortdown: sortBy' class="grid-container">
-       <div class= "piece-card" style = "background: grey; margin: 25px;">
-           <div>
-               <h2> {{ piece.Title }}</h2>
+    <div *ngFor = 'let piece of pieces | sortdown: sortBy' class="card cardColor m-5">
+       <div class= "piece-card">
+           <div class="regPad">
+               <h2 class="headFont"> {{ piece.Title }}</h2>
                <h5>By:  {{ piece.User.FirstName }} {{ piece.User.LastName }}</h5>
                <h6>Submitted on:  {{ piece.Submitted | date: "medium" }} </h6>
            </div>
-           <div>
+           <div class="regPad">
                <p> Genre:  {{ piece.Genre }}</p>
                <p> Description:  {{ piece.Description }}</p>
            </div>
-           <div>
-               <button class="btn btn-small btn-secondary" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
+           <div class="regPad">
+               <button class="btn btn-small btn-info" (click)="view(piece.FileName)">Click Here To Read <q>{{ piece.Title }}</q></button>
            </div>
            <!-- Admin tools-- once piece service is in place this should only be visible to site Admins-->
-           <div *ngIf="loggedIn.Admin == true">
+           <div *ngIf="loggedIn.Admin == true" class="bg-dark text-white">
                <h3>Admin Tools</h3>
                <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database!  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
            </div>
            <!-- My Information-- allow signed in user to work with their own pieces -->
-           <div *ngIf="loggedIn.Id == piece.User.Id">
+           <div *ngIf="loggedIn.Id == piece.User.Id" class="bg-dark text-white">
                <h3>My Information</h3>
                <button routerLink='/edit/piece/{{ piece.Id }}' class="btn btn-info btn-sm" title="Edit this piece"><i class="far fa-edit"></i>Edit</button>
                <button (click)='remove(piece.Id)' class='btn btn-danger btn-sm' title='Remove this piece from the site database.  This action cannot be undone!'><i class="far fa-minus-square"></i>Remove</button>
@@ -40,4 +42,4 @@
        </div>  
     </div>
 </div>
-<h2 *ngIf="loggedIn.Id == 0">You must be logged in to access the Workshop Page.  Sign In or Create a New Account.</h2>
+<h5 class="m-5" *ngIf="loggedIn.Id == 0"> <span class="text-danger">***</span> You must be logged in to access the Workshop Page.  Sign In or Create a New Account.</h5>

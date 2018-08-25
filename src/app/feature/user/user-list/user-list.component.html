@@ -1,21 +1,23 @@
-<h1> {{ title }}</h1>
-<h4> A list of Our Members.</h4>
+<h1 class="typeFont headPad"> {{ title }}</h1>
+<h4 class="regPad"> A list of Our Members.</h4>
 
-<a routerLink="/create/writer" class="btn btn-primary">
+<div *ngIf="loggedIn.Id == 0" class="card cardColor m-5">
+   <h5 class="mx-auto"> Becoming a member is easy.  Click below to get started!</h5>
+    <a routerLink="/create/writer" class="btn btn-primary mx-5">
     <span>
         Become a Member <i class="fas fa-user-plus"></i>
     </span>
 </a>
-
+</div>
 
 <h4 *ngIf="!users">Loading...</h4>
 
 
 <div class="container-flex" *ngIf="users">
-    <div *ngFor = 'let user of users | sort: sortBy' class="grid-container">
-       <div class= "user-card" style = "background: grey; margin: 25px;">
+    <div *ngFor = 'let user of users | sort: sortBy' class="card cardColor m-5">
+       <div class= "user-card">
            <div class="name" >
-               <h2> {{ user.FirstName }} {{ user.LastName }}</h2>
+               <h2 class="headFont"> {{ user.FirstName }} {{ user.LastName }}</h2>
            </div>
            <div>
                <p>Bio: {{user.Bio }}</p>
@@ -29,13 +31,13 @@
               <p> Email: {{ user.Email }}</p>
                <p> Phone: {{ user.Phone }}</p>
            </div>
-           <div *ngIf="loggedIn.Admin == true">
+           <div *ngIf="loggedIn.Admin == true" class="bg-dark text-white">
                <h3>Admin Tools</h3>
                <button routerLink='/edit/writer/{{ user.Id }}' class="btn btn-info btn-sm" title="Edit this writer"><i class="fas fa-user-edit"></i>Edit</button>
                <button (click)='remove(user.Id)' class='btn btn-danger btn-sm' title='Remove this writer from the site database--all pieces on the site by this user must be removed first!'><i class="fas fa-user-times"></i>Remove</button>
            </div>
            <!-- My Information-- allow a user to edit their own details -->
-           <div *ngIf="loggedIn.UserName == user.UserName">
+           <div *ngIf="loggedIn.UserName == user.UserName" class="bg-dark text-white">
            <h3>My Information</h3>
            <button routerLink='/edit/writer/{{ user.Id }}' class="btn btn-info btn-sm" title="Edit this writer"><i class="fas fa-user-edit"></i>Edit</button>
            <button (click)='remove(user.Id)' class='btn btn-danger btn-sm' title='Remove myself from the site database--all pieces on the site by me must be removed first!  This action cannot be undone!!'><i class="fas fa-user-times"></i>Remove</button>
