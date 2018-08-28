@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { User } from "../model/user";
 import { Login } from '../model/login';
 
-const url = "http://localhost:8080/Writers/";
+const url = "http://cdw-web.herokuapp.com/Writers/";
 
 @Injectable()
 export class UserService {

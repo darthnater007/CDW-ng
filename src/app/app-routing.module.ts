@@ -19,7 +19,6 @@ import { PublicationListComponent } from './feature/piece/publication-list/publi
 import { WorkshopListComponent } from './feature/piece/workshop-list/workshop-list.component';
 import { PieceCreateComponent } from './feature/piece/piece-create/piece-create.component';
 import { PieceEditComponent } from './feature/piece/piece-edit/piece-edit.component';
-import { PieceDetailComponent } from './feature/piece/piece-detail/piece-detail.component';
 
 
 
@@ -44,8 +43,6 @@ const routes: Routes = [
     { path: 'workshop', component: WorkshopListComponent },
     { path: 'create/piece/:type', component: PieceCreateComponent },
     { path: 'edit/piece/:id', component: PieceEditComponent },
-    { path: 'piece/detail/:id',  component: PieceDetailComponent },
-    
     
     { path:'**', component: HomeComponent }
 ];

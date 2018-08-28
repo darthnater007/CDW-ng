@@ -5,7 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 import { Piece } from "../model/piece";
 
-const url = "http://localhost:8080/Pieces/";
+const url = "http://cdw-web.herokuapp.com/Pieces/";
 
 
 

@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { Event } from "../model/event";
 
-const url = "http://localhost:8080/Events/";
+const url = "http://cdw-web.herokuapp.com/Events/";
 
 @Injectable()
 export class EventService {
